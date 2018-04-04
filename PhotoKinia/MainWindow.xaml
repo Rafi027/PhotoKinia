@@ -6,8 +6,97 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:PhotoKinia"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="" Height="500" Width="800">
+    <Grid Background="#FF8BDAC7">
+        <Button Content="Konwertuj PNG" Focusable="False" BorderBrush="Yellow" BorderThickness="10" Margin="43,41,603,318" Style="{StaticResource FrameButton}" Click="ConvertPngToJpg">
+            <Button.RenderTransform>
+                <ScaleTransform x:Name="buttonScale" ScaleX="0.98" ScaleY="1.02"/>
+            </Button.RenderTransform>
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="buttonScale"
+                                         Storyboard.TargetProperty="ScaleX"
+                                         From="0.98" To="1.02" Duration="0:0:0.3"
+                                         AutoReverse="False" RepeatBehavior="1x"/>
+                            <DoubleAnimation Storyboard.TargetName="buttonScale"
+                                         Storyboard.TargetProperty="ScaleY"
+                                         From="0.98" To="1.02" Duration="0:0:0.3"
+                                         AutoReverse="false" RepeatBehavior="1x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Button.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="buttonScale"
+                                         Storyboard.TargetProperty="ScaleX"
+                                         From="1.02" To="0.98" Duration="0:0:0.3"
+                                         AutoReverse="False" RepeatBehavior="1x"/>
+                            <DoubleAnimation Storyboard.TargetName="buttonScale"
+                                         Storyboard.TargetProperty="ScaleY"
+                                         From="1.02" To="0.98" Duration="0:0:0.3"
+                                         AutoReverse="False" RepeatBehavior="1x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+
+        <Button Content="Ship via Wells, Fargo &amp; Co." HorizontalAlignment="Right" VerticalAlignment="Center"
+            Padding="20,10" FontSize="16"
+            RenderTransformOrigin="0.5,0.5" Click="Button_Click" Margin="0,242,28,34" >
+            <Button.RenderTransform>
+                <ScaleTransform x:Name="scaleTransform" ScaleX="0.98" ScaleY="1.02"/>
+            </Button.RenderTransform>
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                         Storyboard.TargetProperty="ScaleX"
+                                         From="0.98" To="1.02" Duration="0:0:0.3"
+                                         AutoReverse="False" RepeatBehavior="1x"/>
+                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                         Storyboard.TargetProperty="ScaleY"
+                                         From="0.98" To="1.02" Duration="0:0:0.3"
+                                         AutoReverse="false" RepeatBehavior="1x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Button.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                         Storyboard.TargetProperty="ScaleX"
+                                         From="1.02" To="0.98" Duration="0:0:0.3"
+                                         AutoReverse="False" RepeatBehavior="1x"/>
+                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                         Storyboard.TargetProperty="ScaleY"
+                                         From="1.02" To="0.98" Duration="0:0:0.3"
+                                         AutoReverse="False" RepeatBehavior="1x"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+        <StackPanel Height="106.232" Margin="19.059,0,0,16.466" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="72.904">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-28.578"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Label Content="Photo" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
+            <Label Content="Kinia" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
+        </StackPanel>
     </Grid>
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Content="Opcje"/>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
 </Controls:MetroWindow>
