@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="" Height="500" Width="800">
     <Grid Background="#FF8BDAC7">
-        <Button Content="Konwertuj PNG" Focusable="False" BorderBrush="Yellow" BorderThickness="10" Margin="43,41,603,318" Style="{StaticResource FrameButton}" Click="ConvertPngToJpg">
+        <Button Focusable="False" BorderBrush="Yellow" BorderThickness="10" Margin="43,51,603,308" Style="{StaticResource FrameButton}" Click="ConvertPngToJpg">
             <Button.RenderTransform>
                 <ScaleTransform x:Name="buttonScale" ScaleX="0.98" ScaleY="1.02"/>
             </Button.RenderTransform>
@@ -42,6 +42,10 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </Button.Triggers>
+            <StackPanel>
+                <Image Source="Images/appbar.image.landscape.png" Stretch="UniformToFill" Height="100" Width="100"/>
+                <TextBlock Text="Konwertuj PNG"/>
+            </StackPanel>
         </Button>
 
         <Button Content="Ship via Wells, Fargo &amp; Co." HorizontalAlignment="Right" VerticalAlignment="Center"
