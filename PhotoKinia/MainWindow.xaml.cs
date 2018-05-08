@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using PhotoKinia.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,8 @@ namespace PhotoKinia
 
         private void ConvertPngToJpg(object sender, RoutedEventArgs e)
         {
-
+            var form = new PngToJpgConverterForm();
+            form.ShowDialog();
         }
     }
 }

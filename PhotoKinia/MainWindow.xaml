@@ -50,6 +50,10 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </Button.Triggers>
+            <StackPanel>
+                <Image Source="Images/appbar.image.landscape.png" Stretch="UniformToFill" Height="100" Width="100"/>
+                <TextBlock Text="Konwertuj PNG"/>
+            </StackPanel>
         </Button>
 
         <Button Content="Ship via Wells, Fargo &amp; Co." HorizontalAlignment="Right" VerticalAlignment="Center"
