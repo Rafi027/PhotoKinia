@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace PhotoKinia.Forms
     /// <summary>
     /// Interaction logic for PngToJpgConverterForm.xaml
     /// </summary>
-    public partial class PngToJpgConverterForm : Window
+    public partial class PngToJpgConverterForm : MetroWindow
     {
         public PngToJpgConverterForm()
         {
