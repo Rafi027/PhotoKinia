@@ -7,9 +7,17 @@
         xmlns:propertyExtensions="clr-namespace:PhotoKinia.Extensions.PropertyExtensions"
         xmlns:local="clr-namespace:PhotoKinia"
         mc:Ignorable="d"
-        Title="" Height="500" Width="800">
+        Title="" Height="500" Width="800" ResizeMode="CanResizeWithGrip">
     <Grid Background="#FF8BDAC7">
-        <Button Focusable="False" propertyExtensions:AttachedImageExtension.Image="Images/appbar.image.landscape.png" Content="Zmień format" BorderBrush="GreenYellow" Margin="43,51,603,308" Style="{DynamicResource AnimatedImageButton}" Click="ConvertPngToJpg">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Button propertyExtensions:AttachedImageExtension.Image="Images/appbar.image.landscape.png" Content="Zmień format" Focusable="False" BorderBrush="Yellow" Margin="43,41,39,32.169" Style="{StaticResource AnimatedImageButton}" Click="ConvertPngToJpg">
             <Button.RenderTransform>
                 <ScaleTransform x:Name="buttonScale" ScaleX="0.98" ScaleY="1.02"/>
             </Button.RenderTransform>
@@ -51,7 +59,7 @@
 
         <Button Content="Ship via Wells, Fargo &amp; Co." HorizontalAlignment="Right" VerticalAlignment="Center"
             Padding="20,10" FontSize="16"
-            RenderTransformOrigin="0.5,0.5" Click="Button_Click" Margin="0,242,28,34" >
+            RenderTransformOrigin="0.5,0.5" Click="Button_Click" Margin="0,133.831,28,109" Grid.Column="1" Grid.Row="1" >
             <Button.RenderTransform>
                 <ScaleTransform x:Name="scaleTransform" ScaleX="0.98" ScaleY="1.02"/>
             </Button.RenderTransform>
@@ -86,7 +94,7 @@
                 </EventTrigger>
             </Button.Triggers>
         </Button>
-        <StackPanel Height="106.232" Margin="19.059,0,0,16.466" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="72.904">
+        <StackPanel Height="107" Margin="19,0,0,16" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="73" Grid.Row="1">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
