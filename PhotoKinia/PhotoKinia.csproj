@@ -81,6 +81,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\PropertyExtensions\AttachedImageExtension.cs" />
     <Compile Include="Forms\PngToJpgConverterForm.xaml.cs">
       <DependentUpon>PngToJpgConverterForm.xaml</DependentUpon>
     </Compile>

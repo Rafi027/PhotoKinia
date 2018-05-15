@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:propertyExtensions="clr-namespace:PhotoKinia.Extensions.PropertyExtensions"
         xmlns:local="clr-namespace:PhotoKinia"
         mc:Ignorable="d"
         Title="" Height="500" Width="800">
     <Grid Background="#FF8BDAC7">
-        <Button Focusable="False" BorderBrush="Yellow" BorderThickness="10" Margin="43,51,603,308" Style="{StaticResource FrameButton}" Click="ConvertPngToJpg">
+        <Button Focusable="False" propertyExtensions:AttachedImageExtension.Image="Images/appbar.image.landscape.png" Content="SomeText" BorderBrush="GreenYellow" Margin="43,51,603,308" Style="{DynamicResource AnimatedImageButton}" Click="ConvertPngToJpg">
             <Button.RenderTransform>
                 <ScaleTransform x:Name="buttonScale" ScaleX="0.98" ScaleY="1.02"/>
             </Button.RenderTransform>
@@ -42,10 +43,10 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </Button.Triggers>
-            <StackPanel>
+            <!--<StackPanel>
                 <Image Source="Images/appbar.image.landscape.png" Stretch="UniformToFill" Height="100" Width="100"/>
                 <TextBlock Text="Konwertuj PNG"/>
-            </StackPanel>
+            </StackPanel>-->
         </Button>
 
         <Button Content="Ship via Wells, Fargo &amp; Co." HorizontalAlignment="Right" VerticalAlignment="Center"
