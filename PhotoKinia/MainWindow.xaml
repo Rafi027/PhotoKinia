@@ -15,7 +15,8 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Button propertyExtensions:AttachedImageExtension.Image="Images/appbar.image.landscape.png" Content="Zmień format" Focusable="False" BorderBrush="Yellow" Margin="43,41,39,32.169" Style="{StaticResource AnimatedImageButton}" Click="ConvertPngToJpg">
             <Button.RenderTransform>
@@ -59,7 +60,7 @@
 
         <Button Content="Ship via Wells, Fargo &amp; Co." HorizontalAlignment="Right" VerticalAlignment="Center"
             Padding="20,10" FontSize="16"
-            RenderTransformOrigin="0.5,0.5" Click="Button_Click" Margin="0,133.831,28,109" Grid.Column="1" Grid.Row="1" >
+            RenderTransformOrigin="0.5,0.5" Click="Button_Click" Margin="0,133.831,28,109" Grid.Column="2" Grid.Row="1" >
             <Button.RenderTransform>
                 <ScaleTransform x:Name="scaleTransform" ScaleX="0.98" ScaleY="1.02"/>
             </Button.RenderTransform>
@@ -106,6 +107,7 @@
             <Label Content="Photo" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
             <Label Content="Kinia" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
         </StackPanel>
+        <Button Content="Przytnij" propertyExtensions:AttachedImageExtension.Image="Images/appbar.crop.png" Style="{StaticResource AnimatedImageButton}" BorderBrush="GreenYellow" Grid.Column="1" Margin="10"/>
     </Grid>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
