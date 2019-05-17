@@ -19,6 +19,9 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Button propertyExtensions:AttachedImageExtension.Image="Images/appbar.image.landscape.png" Content="Zmień format" Focusable="False" BorderBrush="Yellow" Margin="43,41,39,32.169" Style="{StaticResource AnimatedImageButton}" Click="ConvertPngToJpg">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
             <Button.RenderTransform>
                 <ScaleTransform x:Name="buttonScale" ScaleX="0.98" ScaleY="1.02"/>
             </Button.RenderTransform>
