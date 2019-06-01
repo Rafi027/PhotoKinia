@@ -85,6 +85,7 @@
     <Compile Include="Forms\PngToJpgConverterForm.xaml.cs">
       <DependentUpon>PngToJpgConverterForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ImageSortingModule\ImageSorter.cs" />
     <Compile Include="Utils\ImageConvertion\PngToJpgConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
