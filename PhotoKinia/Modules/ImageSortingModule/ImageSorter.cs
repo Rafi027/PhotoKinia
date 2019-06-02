@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace PhotoKinia.Modules.ImageSortingModule
 {
-    public class ImageSorter
+    internal class ImageSorter
     {
+        private IFileListGenerator fileProvider;
+
+        public ImageSorter(IFileListGenerator fileProvider)
+        {
+            this.fileProvider = fileProvider;
+        }
+
         public bool Sort(string outputDirectory, params string[] inputDirectories)
         {
             throw new NotImplementedException();
