@@ -10,16 +10,18 @@ namespace PhotoKinia.Modules.ImageSortingModule
     class DateTimeClassification : IImageClassificationMethod
     {
         private string storageDirectory;
+        private readonly IImageCreationDateReader dateReader;
 
-        public DateTimeClassification(string storageDirectory)
+        public DateTimeClassification(string storageDirectory, IImageCreationDateReader dateReader)
         {
             this.storageDirectory = storageDirectory;
+            this.dateReader = dateReader;
         }
 
         public ClassificationResult GetClassifiedFilePath(string imagePath)
         {
-            var creationDate = ReadFileCreationDate(imagePath);
-            var relativePath = ConvertDateToRelativePath(creationDate);
+            var creationDate = dateReader.Read(imagePath);
+            var relativePath = ConvertDateToRelativePath(creationDate, Path.GetFileName(imagePath));
 
             return new ClassificationResult
             {
@@ -28,14 +30,10 @@ namespace PhotoKinia.Modules.ImageSortingModule
             };
         }
 
-        private string ConvertDateToRelativePath(DateTime creationDate)
+        private string ConvertDateToRelativePath(DateTime creationDate, string imageName)
         {
-            return $"\\{creationDate.Year}\\{creationDate.Month}\\{creationDate.Day}\\";
+            return $"{creationDate.Year}\\{creationDate.Month}\\{creationDate.Day}\\{imageName}";
         }
 
-        private DateTime ReadFileCreationDate(string imagePath)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

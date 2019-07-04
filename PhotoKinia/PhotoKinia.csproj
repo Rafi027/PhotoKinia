@@ -89,6 +89,7 @@
     <Compile Include="Modules\ImageSortingModule\ClassificationResult.cs" />
     <Compile Include="Modules\ImageSortingModule\DateTimeClassification.cs" />
     <Compile Include="Modules\ImageSortingModule\IFileListGenerator.cs" />
+    <Compile Include="Modules\ImageSortingModule\IImageCreationDateReader.cs" />
     <Compile Include="Modules\ImageSortingModule\ImageSorter.cs" />
     <Compile Include="Modules\ImageSortingModule\IImageClassificationMethod.cs" />
     <Compile Include="Utils\ImageConvertion\PngToJpgConverter.cs" />
