@@ -86,6 +86,8 @@
     <Compile Include="Forms\PngToJpgConverterForm.xaml.cs">
       <DependentUpon>PngToJpgConverterForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ImageSortingModule\ClassificationResult.cs" />
+    <Compile Include="Modules\ImageSortingModule\DateTimeClassification.cs" />
     <Compile Include="Modules\ImageSortingModule\IFileListGenerator.cs" />
     <Compile Include="Modules\ImageSortingModule\ImageSorter.cs" />
     <Compile Include="Modules\ImageSortingModule\IImageClassificationMethod.cs" />

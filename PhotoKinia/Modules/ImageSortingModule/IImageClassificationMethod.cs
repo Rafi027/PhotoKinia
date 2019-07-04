@@ -8,6 +8,6 @@ namespace PhotoKinia.Modules.ImageSortingModule
 {
     interface IImageClassificationMethod
     {
-        string GetClassifiedFilePath(string imagePath);
+        ClassificationResult GetClassifiedFilePath(string imagePath);
     }
 }
