@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="Modules\ImageSortingModule\ClassificationResult.cs" />
     <Compile Include="Modules\ImageSortingModule\DateTimeClassification.cs" />
+    <Compile Include="Modules\ImageSortingModule\ExifCreationDateReader.cs" />
     <Compile Include="Modules\ImageSortingModule\IFileListGenerator.cs" />
     <Compile Include="Modules\ImageSortingModule\IImageCreationDateReader.cs" />
     <Compile Include="Modules\ImageSortingModule\ImageSorter.cs" />
