@@ -76,6 +76,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\FileClassificationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\PngToJpgConverterForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,6 +93,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Extensions\PropertyExtensions\AttachedImageExtension.cs" />
+    <Compile Include="Forms\FileClassificationForm.xaml.cs">
+      <DependentUpon>FileClassificationForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PngToJpgConverterForm.xaml.cs">
       <DependentUpon>PngToJpgConverterForm.xaml</DependentUpon>
     </Compile>
