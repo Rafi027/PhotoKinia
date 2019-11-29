@@ -7,5 +7,26 @@
         xmlns:local="clr-namespace:PhotoKinia.Forms"
         mc:Ignorable="d"
         Title="FileClassificationForm" Height="450" Width="800">
-    <Grid/>
+    <Grid>
+        <Label Content="Output path: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Button Content="..." HorizontalAlignment="Left" Margin="762,9,0,0" VerticalAlignment="Top" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="124,11,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="633"/>
+        <Grid Margin="0,41,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="158"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="LightGray" BorderThickness="0 0 1 0" Margin="10,10,0,10">
+                <ListBox>
+                    <Label Content="Demo1"/>
+                    <Label Content="Demo2"/>
+                    <Label Content="Demo3"/>
+                    <Label Content="Demo4"/>
+                </ListBox>
+            </Border>
+            <StackPanel Grid.Column="1" Margin="10">
+                <Button Content="➕ Add folder"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
 </Controls:MetroWindow>

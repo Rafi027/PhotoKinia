@@ -1,6 +1,8 @@
 ﻿using MahApps.Metro.Controls;
+using PhotoKinia.Modules.ImageSortingModule;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,10 @@ namespace PhotoKinia.Forms
         public FileClassificationForm()
         {
             InitializeComponent();
+            var reader = new ExifCreationDateReader();
+            var exists = File.Exists(@"Images\ExifDemo\demo.jpg");
+            var date = reader.Read(@"Images\ExifDemo\demo.jpg");
+
         }
     }
 }
