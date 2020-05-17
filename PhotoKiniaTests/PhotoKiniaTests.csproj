@@ -70,6 +70,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ImageSortingModule\ImageSortingModule.csproj">
+      <Project>{89371c2f-ffa4-48a4-ba2f-bbf3b8301281}</Project>
+      <Name>ImageSortingModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhotoKinia\PhotoKinia.csproj">
       <Project>{7a0a0912-cdfe-4b3b-81c0-5d6f5bbdf961}</Project>
       <Name>PhotoKinia</Name>
