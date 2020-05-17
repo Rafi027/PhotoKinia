@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PhotoKinia.Modules.ImageSortingModule
 {
-    class ExifCreationDateReader : IImageCreationDateReader
+    public class ExifCreationDateReader : IImageCreationDateReader
     {
         public DateTime Read(string imagePath)
         {

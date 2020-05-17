@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PhotoKinia.Modules.ImageSortingModule
 {
-    class DateTimeClassification : IImageClassificationMethod
+    public class DateTimeClassification : IImageClassificationMethod
     {
         private string storageDirectory;
         private readonly IImageCreationDateReader dateReader;
