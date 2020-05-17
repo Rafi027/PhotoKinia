@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PhotoKinia.Modules.ImageSortingModule
 {
-    internal interface IFileListGenerator
+    public interface IFileListGenerator
     {
         string[] GetFiles();
     }
