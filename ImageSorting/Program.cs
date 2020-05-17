@@ -16,6 +16,8 @@ namespace ImageSorting
             var directoryInfo = new DirectoryInfo(inputDirectory);
 
             var imageFiles = directoryInfo.GetFiles().Where(i => i.Extension.ToLower().Equals(".jpg")).Select(f => f.FullName).ToList();
+            var totalNumberOfFiles = imageFiles.Count;
+            var currentFileNumber = 0;
             foreach (var image in imageFiles)
             {
                 var newImagePath = classification.GetClassifiedFilePath(image);
@@ -25,7 +27,7 @@ namespace ImageSorting
                     Directory.CreateDirectory(directoryPath);
                 try
                 {
-                    Console.WriteLine($"Copy file {Path.GetFileName(image)} to {newImagePath.ClassifiedPath.FullPath}");
+                    Console.WriteLine($"Copy file {++currentFileNumber}/{totalNumberOfFiles} {Path.GetFileName(image)} to {newImagePath.ClassifiedPath.FullPath}");
                     File.Copy(image, newImagePath.ClassifiedPath.FullPath);
                 }
                 catch (Exception)
