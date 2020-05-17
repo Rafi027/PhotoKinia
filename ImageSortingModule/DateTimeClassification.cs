@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageSortingModule.Converters;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
     {
         private string storageDirectory;
         private readonly IImageCreationDateReader dateReader;
+        private readonly MonthToString monthToString = new MonthToString();
 
         public DateTimeClassification(string storageDirectory, IImageCreationDateReader dateReader)
         {
@@ -32,7 +34,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
 
         private string ConvertDateToRelativePath(DateTime creationDate, string imageName)
         {
-            return $"{creationDate.Year}\\{creationDate.Month}\\{creationDate.Day}\\{imageName}";
+            return $"{creationDate.Year}\\{monthToString.Convert(creationDate.Month)}\\{creationDate.Day}\\{imageName}";
         }
 
     }
