@@ -8,11 +8,13 @@ namespace PhotoKinia.Modules.ImageSortingModule
 {
     internal class ImageSorter
     {
-        private IFileListGenerator fileProvider;
+        private readonly IFileListGenerator fileProvider;
+        private readonly IImageClassificationMethod imageClassification;
 
-        public ImageSorter(IFileListGenerator fileProvider)
+        public ImageSorter(IFileListGenerator fileProvider, IImageClassificationMethod imageClassification)
         {
             this.fileProvider = fileProvider;
+            this.imageClassification = imageClassification;
         }
 
         public bool Sort(string outputDirectory, params string[] inputDirectories)
