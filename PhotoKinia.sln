@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoKinia", "PhotoKinia\Ph
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoKiniaTests", "PhotoKiniaTests\PhotoKiniaTests.csproj", "{E7B6E8D3-D5FA-4F64-B3C8-690B924F0F2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSorting", "ImageSorting\ImageSorting.csproj", "{D8E04ADB-72DE-4B98-B020-001054632702}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageSortingRunner", "ImageSorting\ImageSortingRunner.csproj", "{D8E04ADB-72DE-4B98-B020-001054632702}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSortingModule", "ImageSortingModule\ImageSortingModule.csproj", "{89371C2F-FFA4-48A4-BA2F-BBF3B8301281}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageSortingModule", "ImageSortingModule\ImageSortingModule.csproj", "{89371C2F-FFA4-48A4-BA2F-BBF3B8301281}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
