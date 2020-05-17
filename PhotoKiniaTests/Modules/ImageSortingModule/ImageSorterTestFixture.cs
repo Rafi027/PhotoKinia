@@ -22,18 +22,18 @@ namespace PhotoKiniaTests.Modules.ImageSortingModule
             mockFilesDictionary.Add(@"D:\Pentax\dcim\001.jpg", @"C:\PhotoLibrary");
 
             var mockFiles = new Dictionary<string, DateTime>();
-            mockFiles.Add(@"D:\Pentax\dcim\100\001.jpg", new DateTime(2019, 2, 1, 10, 39, 4));
+            mockFiles.Add(@"D:\Pentax\dcim\100\001.jpg", new DateTime(2019, 1, 1, 10, 39, 4));
             mockFiles.Add(@"D:\Pentax\dcim\100\002.jpg", new DateTime(2019, 2, 13, 10, 39, 4));
             mockFiles.Add(@"D:\Pentax\dcim\100\003.jpg", new DateTime(2019, 2, 13, 10, 39, 4));
             mockFiles.Add(@"D:\Olympus\dcim\004.jpg", new DateTime(2019, 2, 1, 19, 20, 4));
             mockFiles.Add(@"D:\Olympus\dcim\005.jpg", new DateTime(2019, 2, 1, 10, 39, 4));
 
             var mockResults = new Dictionary<string, string>();
-            mockResults.Add(@"D:\Pentax\dcim\100\001.jpg", Path.Combine(StorageDirectory, @"2019\2\1\001.jpg"));
-            mockResults.Add(@"D:\Pentax\dcim\100\002.jpg", Path.Combine(StorageDirectory, @"2019\2\13\002.jpg"));
-            mockResults.Add(@"D:\Pentax\dcim\100\003.jpg", Path.Combine(StorageDirectory, @"2019\2\13\003.jpg"));
-            mockResults.Add(@"D:\Olympus\dcim\004.jpg", Path.Combine(StorageDirectory, @"2019\2\1\004.jpg"));
-            mockResults.Add(@"D:\Olympus\dcim\005.jpg", Path.Combine(StorageDirectory, @"2019\2\1\005.jpg"));
+            mockResults.Add(@"D:\Pentax\dcim\100\001.jpg", Path.Combine(StorageDirectory, @"2019\1. Styczeń\1\001.jpg"));
+            mockResults.Add(@"D:\Pentax\dcim\100\002.jpg", Path.Combine(StorageDirectory, @"2019\2. Luty\13\002.jpg"));
+            mockResults.Add(@"D:\Pentax\dcim\100\003.jpg", Path.Combine(StorageDirectory, @"2019\2. Luty\13\003.jpg"));
+            mockResults.Add(@"D:\Olympus\dcim\004.jpg", Path.Combine(StorageDirectory, @"2019\2. Luty\1\004.jpg"));
+            mockResults.Add(@"D:\Olympus\dcim\005.jpg", Path.Combine(StorageDirectory, @"2019\2. Luty\1\005.jpg"));
 
 
 
