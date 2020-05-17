@@ -1,4 +1,5 @@
-﻿using ImageSortingModule.Converters;
+﻿using ImageSortingModule;
+using ImageSortingModule.Converters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,18 +24,24 @@ namespace PhotoKinia.Modules.ImageSortingModule
         public ClassificationResult GetClassifiedFilePath(string imagePath)
         {
             var creationDate = dateReader.Read(imagePath);
-            var relativePath = ConvertDateToRelativePath(creationDate, Path.GetFileName(imagePath));
 
             return new ClassificationResult
             {
-                ClassifiedPath = Path.Combine(storageDirectory, relativePath),
+                ClassifiedPath = ConvertDateToRelativePath(creationDate, Path.GetFileName(imagePath)),
                 Success = true
             };
         }
 
-        private string ConvertDateToRelativePath(DateTime creationDate, string imageName)
+        private ClassifiedPath ConvertDateToRelativePath(DateTime creationDate, string imageName)
         {
-            return $"{creationDate.Year}\\{monthToString.Convert(creationDate.Month)}\\{creationDate.Day}\\{imageName}";
+            return new ClassifiedPath
+            {
+                OutputDirectory = storageDirectory,
+                Year = creationDate.Year.ToString(),
+                Month = monthToString.Convert(creationDate.Month),
+                Day = creationDate.Day.ToString(),
+                FileName = imageName
+            };
         }
 
     }

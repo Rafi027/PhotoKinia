@@ -1,8 +1,10 @@
-﻿namespace PhotoKinia.Modules.ImageSortingModule
+﻿using ImageSortingModule;
+
+namespace PhotoKinia.Modules.ImageSortingModule
 {
     public class ClassificationResult
     {
         public bool Success { get; set; }
-        public string ClassifiedPath { get; set; }
+        public ClassifiedPath ClassifiedPath { get; set; }
     }
 }
