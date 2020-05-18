@@ -20,7 +20,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
 
         public void Sort(string outputDirectory, string inputDirectory)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Sorting started!");
             var directoryInfo = new DirectoryInfo(inputDirectory);
 
             var imageFiles = directoryInfo.GetFiles().Where(i => i.Extension.ToLower().Equals(".jpg")).Select(f => f.FullName).ToList();
