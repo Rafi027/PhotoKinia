@@ -11,13 +11,11 @@ namespace PhotoKinia.Modules.ImageSortingModule
 {
     public class DateTimeClassification : IImageClassificationMethod
     {
-        private string outputDirectory;
         private readonly IImageCreationDateReader dateReader;
         private readonly MonthToString monthToString = new MonthToString();
 
-        public DateTimeClassification(string outputDirectory, IImageCreationDateReader dateReader)
+        public DateTimeClassification(IImageCreationDateReader dateReader)
         {
-            this.outputDirectory = outputDirectory;
             this.dateReader = dateReader;
         }
 
@@ -36,7 +34,6 @@ namespace PhotoKinia.Modules.ImageSortingModule
         {
             return new ClassifiedPath
             {
-                OutputDirectory = outputDirectory,
                 Year = creationDate.Year.ToString(),
                 Month = monthToString.Convert(creationDate.Month),
                 Day = creationDate.Day.ToString(),

@@ -29,14 +29,14 @@ namespace PhotoKinia.Modules.ImageSortingModule
             foreach (var image in imageFiles)
             {
                 var newImagePath = imageClassification.GetClassifiedFilePath(image);
-                string directoryPath = Path.Combine(newImagePath.ClassifiedPath.OutputDirectory,
+                string directoryPath = Path.Combine(outputDirectory,
                     newImagePath.ClassifiedPath.Year, newImagePath.ClassifiedPath.Month, newImagePath.ClassifiedPath.Day);
                 if (!Directory.Exists(directoryPath))
                     Directory.CreateDirectory(directoryPath);
                 try
                 {
                     Console.WriteLine($"Copy file {++currentFileNumber}/{totalNumberOfFiles} {Path.GetFileName(image)} to {newImagePath.ClassifiedPath.FullPath}");
-                    File.Copy(image, newImagePath.ClassifiedPath.FullPath);
+                    File.Copy(image, Path.Combine(outputDirectory, newImagePath.ClassifiedPath.FullPath));
                 }
                 catch (Exception)
                 {
