@@ -18,7 +18,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
             this.imageClassification = imageClassification;
         }
 
-        public void Sort(string outputDirectory, string inputDirectory)
+        public void Sort(string inputDirectory, string outputDirectory)
         {
             Console.WriteLine("Sorting started!");
             var directoryInfo = new DirectoryInfo(inputDirectory);
