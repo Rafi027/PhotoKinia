@@ -9,7 +9,7 @@ namespace ImageSorting
     {
         static void Main(string[] args)
         {
-            var sort = new ImageSorter(null, new DateTimeClassification(new ExifCreationDateReader()));
+            var sort = new ImageSorter(null, new DateTimeClassification(new ExifCreationDateReader()), null);
             sort.Sort(args[0], args[1]);
         }
     }

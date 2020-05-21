@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageSortingModule.Classification.EqualityCheck;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,11 +12,13 @@ namespace PhotoKinia.Modules.ImageSortingModule
     {
         private readonly IFileListGenerator fileProvider;
         private readonly IImageClassificationMethod imageClassification;
+        private readonly IImageEqualityCheck imageEquality;
 
-        public ImageSorter(IFileListGenerator fileProvider, IImageClassificationMethod imageClassification)
+        public ImageSorter(IFileListGenerator fileProvider, IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality)
         {
             this.fileProvider = fileProvider;
             this.imageClassification = imageClassification;
+            this.imageEquality = imageEquality;
         }
 
         public void Sort(string inputDirectory, string outputDirectory)
