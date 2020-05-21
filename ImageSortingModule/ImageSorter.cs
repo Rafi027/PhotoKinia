@@ -45,6 +45,12 @@ namespace PhotoKinia.Modules.ImageSortingModule
                         File.Copy(image, destinationFilePath, false);
                         continue;
                     }
+                    
+                    if (imageEquality.Equals(image, destinationFilePath))
+                    {
+                        Console.WriteLine("File alredy exists. Skip.");
+                        continue;
+                    }
                 }
                 catch (Exception)
                 {
