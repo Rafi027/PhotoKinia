@@ -36,7 +36,12 @@ namespace PhotoKinia.Modules.ImageSortingModule
                 try
                 {
                     Console.WriteLine($"Copy file {++currentFileNumber}/{totalNumberOfFiles} {Path.GetFileName(image)} to {newImagePath.ClassifiedPath.FullPath}");
-                    File.Copy(image, Path.Combine(outputDirectory, newImagePath.ClassifiedPath.FullPath));
+                    var destinationFilePath = Path.Combine(outputDirectory, newImagePath.ClassifiedPath.FullPath);
+                    if(!File.Exists(destinationFilePath))
+                    {
+                        File.Copy(image, destinationFilePath, false);
+                        continue;
+                    }
                 }
                 catch (Exception)
                 {
