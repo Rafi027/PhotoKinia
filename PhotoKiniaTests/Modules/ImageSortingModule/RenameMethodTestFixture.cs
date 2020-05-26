@@ -8,32 +8,41 @@ namespace PhotoKiniaTests.Modules.ImageSortingModule
     public class RenameMethodTestFixture
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestFileNameIncrementation()
         {
             var incrementalRename = new IncrementalRename();
-            var incrementedName = incrementalRename.GetNewFileName("Fooo_1.jpg");
-            Assert.AreEqual("Fooo_2.jpg", incrementalRename);
+            var incrementedName = incrementalRename.GetNewFileName("Fooo1.jpg");
+            Assert.AreEqual("Fooo1(1).jpg", incrementedName);
             
-            incrementedName = incrementalRename.GetNewFileName("Fooo_2.jpg");
-            Assert.AreEqual("Fooo_3.jpg", incrementalRename);
+            incrementedName = incrementalRename.GetNewFileName("Fooo1(1).jpg");
+            Assert.AreEqual("Fooo1(2).jpg", incrementedName);
 
-            incrementedName = incrementalRename.GetNewFileName("Fooo_22.jpg");
-            Assert.AreEqual("Fooo_23.jpg", incrementalRename);
+            incrementedName = incrementalRename.GetNewFileName("Fooo1(2).jpg");
+            Assert.AreEqual("Fooo1(3).jpg", incrementedName);
 
-            incrementedName = incrementalRename.GetNewFileName("Fooo_a.jpg");
-            Assert.AreEqual("Fooo_a_1.jpg", incrementalRename);
+            incrementedName = incrementalRename.GetNewFileName("Fooo1(9).jpg");
+            Assert.AreEqual("Fooo1(10).jpg", incrementedName);
 
-            incrementedName = incrementalRename.GetNewFileName("Fooo_a_a.jpg");
-            Assert.AreEqual("Fooo_a_a_1.jpg", incrementalRename);
+            incrementedName = incrementalRename.GetNewFileName("Fooo(_a)_1.jpg");
+            Assert.AreEqual("Fooo(_a)_1(1).jpg", incrementedName);
 
-            incrementedName = incrementalRename.GetNewFileName("Fooo_1_a.jpg");
-            Assert.AreEqual("Fooo_1_a_1.jpg", incrementalRename);
+            incrementedName = incrementalRename.GetNewFileName("Fooo(a).jpg");
+            Assert.AreEqual("Fooo(a)(1).jpg", incrementedName);
 
-            incrementedName = incrementalRename.GetNewFileName("Fooo_a1_.jpg");
-            Assert.AreEqual("Fooo_a_1__1.jpg", incrementalRename);
+            incrementedName = incrementalRename.GetNewFileName("Fooo_(1.jpg");
+            Assert.AreEqual("Fooo_(1(1).jpg", incrementedName);
 
-            incrementedName = incrementalRename.GetNewFileName("Fooo_a1.jpg");
-            Assert.AreEqual("Fooo_a1_1.jpg", incrementalRename);
+            incrementedName = incrementalRename.GetNewFileName("Fooo1).jpg");
+            Assert.AreEqual("Fooo1)(1).jpg", incrementedName);
+
+            incrementedName = incrementalRename.GetNewFileName("Fooo(1_1).jpg");
+            Assert.AreEqual("Fooo(1_1)(1).jpg", incrementedName);
+
+            incrementedName = incrementalRename.GetNewFileName("Fooo(11_).jpg");
+            Assert.AreEqual("Fooo(11_)(1).jpg", incrementedName);
+
+            incrementedName = incrementalRename.GetNewFileName("Fooo(11a).jpg");
+            Assert.AreEqual("Fooo(11a)(1).jpg", incrementedName);
         }
     }
 }
