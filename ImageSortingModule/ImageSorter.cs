@@ -1,4 +1,5 @@
 ﻿using ImageSortingModule.Classification.EqualityCheck;
+using ImageSortingModule.Classification.RenameMethod;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,24 +33,33 @@ namespace PhotoKinia.Modules.ImageSortingModule
             foreach (var image in imageFiles)
             {
                 var newImagePath = imageClassification.GetClassifiedFilePath(image);
-                string directoryPath = Path.Combine(outputDirectory,
-                    newImagePath.ClassifiedPath.Year, newImagePath.ClassifiedPath.Month, newImagePath.ClassifiedPath.Day);
-                if (!Directory.Exists(directoryPath))
-                    Directory.CreateDirectory(directoryPath);
                 try
                 {
-                    Console.WriteLine($"Copy file {++currentFileNumber}/{totalNumberOfFiles} {Path.GetFileName(image)} to {newImagePath.ClassifiedPath.FullPath}");
-                    var destinationFilePath = Path.Combine(outputDirectory, newImagePath.ClassifiedPath.FullPath);
-                    if(!File.Exists(destinationFilePath))
+                    int safetyBreak = 0;
+                    while (true)
                     {
-                        File.Copy(image, destinationFilePath, false);
-                        continue;
-                    }
-                    
-                    if (imageEquality.Equals(image, destinationFilePath))
-                    {
-                        Console.WriteLine("File alredy exists. Skip.");
-                        continue;
+                        if(++safetyBreak > 10000)
+                            throw new InvalidOperationException($"Cannot find new file name for file: {image}");
+                        
+                        string directoryPath = Path.Combine(outputDirectory,
+                                    newImagePath.ClassifiedPath.Year, newImagePath.ClassifiedPath.Month, newImagePath.ClassifiedPath.Day);
+                        if (!Directory.Exists(directoryPath))
+                            Directory.CreateDirectory(directoryPath);
+                        Console.WriteLine($"Copy file {++currentFileNumber}/{totalNumberOfFiles} {Path.GetFileName(image)} to {newImagePath.ClassifiedPath.FullPath}");
+                        var destinationFilePath = Path.Combine(outputDirectory, newImagePath.ClassifiedPath.FullPath);
+                        if (!File.Exists(destinationFilePath))
+                        {
+                            File.Copy(image, destinationFilePath, false);
+                            break;
+                        }
+
+                        if (imageEquality.Equals(image, destinationFilePath))
+                        {
+                            Console.WriteLine("File alredy exists. Skip.");
+                            break;
+                        }
+                        var rename = new IncrementalRename();
+                        newImagePath.ClassifiedPath.FileName = rename.GetNewFileName(newImagePath.ClassifiedPath.FileName);
                     }
                 }
                 catch (Exception)
