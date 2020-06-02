@@ -45,8 +45,8 @@ namespace PhotoKinia.Modules.ImageSortingModule
                                     newImagePath.ClassifiedPath.Year, newImagePath.ClassifiedPath.Month, newImagePath.ClassifiedPath.Day);
                         if (!Directory.Exists(directoryPath))
                             Directory.CreateDirectory(directoryPath);
-                        Console.WriteLine($"Copy file {++currentFileNumber}/{totalNumberOfFiles} {Path.GetFileName(image)} to {newImagePath.ClassifiedPath.FullPath}");
-                        var destinationFilePath = Path.Combine(outputDirectory, newImagePath.ClassifiedPath.FullPath);
+                        Console.WriteLine($"Copy file {++currentFileNumber}/{totalNumberOfFiles} {Path.GetFileName(image)} to {newImagePath.ClassifiedPath.RelativePath}");
+                        var destinationFilePath = Path.Combine(outputDirectory, newImagePath.ClassifiedPath.RelativePath);
                         if (!File.Exists(destinationFilePath))
                         {
                             File.Copy(image, destinationFilePath, false);
@@ -64,7 +64,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine($"ERROR - Cannot copy image. Source: {image}. Destination: {newImagePath.ClassifiedPath.FullPath}");
+                    Console.WriteLine($"ERROR - Cannot copy image. Source: {image}. Destination: {newImagePath.ClassifiedPath.RelativePath}");
                 }
             }
         }

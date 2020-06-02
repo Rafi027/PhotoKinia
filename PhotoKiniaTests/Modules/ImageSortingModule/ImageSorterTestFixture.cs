@@ -55,7 +55,7 @@ namespace PhotoKiniaTests.Modules.ImageSortingModule
                 var result = classificationMethod.GetClassifiedFilePath(imagePath);
                 Assert.IsTrue(result.Success);
 
-                Assert.AreEqual(mockResults[imagePath], result.ClassifiedPath.FullPath);
+                Assert.AreEqual(mockResults[imagePath], result.ClassifiedPath.RelativePath);
             }
         }
 
