@@ -33,6 +33,11 @@ namespace PhotoKinia.Modules.ImageSortingModule
             foreach (var image in imageFiles)
             {
                 var newImagePath = imageClassification.GetClassifiedFilePath(image);
+                if(!newImagePath.Success)
+                {
+                    Console.WriteLine($"Cannot classify file: {image}. File skipped.");
+                    continue;
+                }
                 try
                 {
                     int safetyBreak = 0;

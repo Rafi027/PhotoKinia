@@ -21,13 +21,25 @@ namespace PhotoKinia.Modules.ImageSortingModule
 
         public ClassificationResult GetClassifiedFilePath(string imagePath)
         {
-            var creationDate = dateReader.Read(imagePath);
-
-            return new ClassificationResult
+            try
             {
-                ClassifiedPath = ConvertDateToRelativePath(creationDate, Path.GetFileName(imagePath)),
-                Success = true
-            };
+                var creationDate = dateReader.Read(imagePath);
+
+                return new ClassificationResult
+                {
+                    ClassifiedPath = ConvertDateToRelativePath(creationDate, Path.GetFileName(imagePath)),
+                    Success = true
+                };
+            }
+            catch (Exception)
+            {
+
+                return new ClassificationResult
+                {
+                    ClassifiedPath = null,
+                    Success = false
+                };
+            }
         }
 
         private ClassifiedRelativePath ConvertDateToRelativePath(DateTime creationDate, string imageName)
