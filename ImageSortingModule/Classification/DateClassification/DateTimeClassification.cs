@@ -30,9 +30,9 @@ namespace PhotoKinia.Modules.ImageSortingModule
             };
         }
 
-        private ClassifiedPath ConvertDateToRelativePath(DateTime creationDate, string imageName)
+        private ClassifiedRelativePath ConvertDateToRelativePath(DateTime creationDate, string imageName)
         {
-            return new ClassifiedPath
+            return new ClassifiedRelativePath
             {
                 Year = creationDate.Year.ToString(),
                 Month = monthToString.Convert(creationDate.Month),

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ImageSortingModule
 {
-    public class ClassifiedPath
+    public class ClassifiedRelativePath
     {
         public string Year { get; set; }
         public string Month { get; set; }
