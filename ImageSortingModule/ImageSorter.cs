@@ -32,8 +32,8 @@ namespace PhotoKinia.Modules.ImageSortingModule
             var currentFileNumber = 0;
             foreach (var image in imageFiles)
             {
-                var newImagePath = imageClassification.GetClassifiedFilePath(image);
-                if(!newImagePath.Success)
+                var classification = imageClassification.GetClassifiedFilePath(image);
+                if(!classification.Success)
                 {
                     Console.WriteLine($"Cannot classify file: {image}. File skipped.");
                     continue;
@@ -47,11 +47,11 @@ namespace PhotoKinia.Modules.ImageSortingModule
                             throw new InvalidOperationException($"Cannot find new file name for file: {image}");
                         
                         string directoryPath = Path.Combine(outputDirectory,
-                                    newImagePath.ClassifiedPath.Year, newImagePath.ClassifiedPath.Month, newImagePath.ClassifiedPath.Day);
+                                    classification.ClassifiedPath.Year, classification.ClassifiedPath.Month, classification.ClassifiedPath.Day);
                         if (!Directory.Exists(directoryPath))
                             Directory.CreateDirectory(directoryPath);
-                        Console.WriteLine($"Copy file {++currentFileNumber}/{totalNumberOfFiles} {Path.GetFileName(image)} to {newImagePath.ClassifiedPath.RelativePath}");
-                        var destinationFilePath = Path.Combine(outputDirectory, newImagePath.ClassifiedPath.RelativePath);
+                        Console.WriteLine($"Copy file {++currentFileNumber}/{totalNumberOfFiles} {Path.GetFileName(image)} to {classification.ClassifiedPath.RelativePath}");
+                        var destinationFilePath = Path.Combine(outputDirectory, classification.ClassifiedPath.RelativePath);
                         if (!File.Exists(destinationFilePath))
                         {
                             File.Copy(image, destinationFilePath, false);
@@ -64,12 +64,12 @@ namespace PhotoKinia.Modules.ImageSortingModule
                             break;
                         }
                         var rename = new IncrementalRename();
-                        newImagePath.ClassifiedPath.FileName = rename.GetNewFileName(newImagePath.ClassifiedPath.FileName);
+                        classification.ClassifiedPath.FileName = rename.GetNewFileName(classification.ClassifiedPath.FileName);
                     }
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine($"ERROR - Cannot copy image. Source: {image}. Destination: {newImagePath.ClassifiedPath.RelativePath}");
+                    Console.WriteLine($"ERROR - Cannot copy image. Source: {image}. Destination: {classification.ClassifiedPath.RelativePath}");
                 }
             }
         }
