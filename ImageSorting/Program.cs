@@ -11,8 +11,8 @@ namespace ImageSorting
     {
         static void Main(string[] args)
         {
-            var sort = new ImageSorter(new DirectoriesFileSource(), new DateTimeClassification(new ExifCreationDateReader()), new MD5Check());
-            sort.Sort(args[0]);
+            var sort = new ImageSorter(new DirectoriesFileSource(args[0]), new DateTimeClassification(new ExifCreationDateReader()), new MD5Check());
+            sort.Sort(args[1]);
         }
     }
 }

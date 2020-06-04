@@ -9,17 +9,22 @@ namespace ImageSortingModule.FileListGeneration
 {
     public class DirectoriesFileSource : IFileListGenerator
     {
-        private const string PhotoDirectories = "PhotoDirectories.txt";
+        private readonly string sourceFilePath;
+
+        public DirectoriesFileSource(string sourceFilePath)
+        {
+            this.sourceFilePath = sourceFilePath;
+        }
 
         public string[] GetFiles()
         {
-            if (!File.Exists(PhotoDirectories))
+            if (!File.Exists(sourceFilePath))
             {
-                Console.WriteLine("Error - Cannot find file with photo directories");
+                Console.WriteLine($"Error - Cannot find file with photo directories. File: {sourceFilePath}");
                 return null;
             }
 
-            var directories = File.ReadAllLines(PhotoDirectories);
+            var directories = File.ReadAllLines(sourceFilePath);
             var result = new List<string>();
             foreach (var directory in directories)
             {
