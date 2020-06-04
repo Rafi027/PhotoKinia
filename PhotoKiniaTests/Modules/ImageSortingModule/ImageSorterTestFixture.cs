@@ -38,7 +38,7 @@ namespace PhotoKiniaTests.Modules.ImageSortingModule
 
 
             var files = new List<string>(mockFiles.Keys).ToArray();
-            fileProviderMock.Setup(mock => mock.GetFiles()).Returns(mockFiles.Keys.ToArray());
+            fileProviderMock.Setup(mock => mock.GetFiles()).Returns(mockFiles.Keys.ToList());
             fileProvider = fileProviderMock.Object;
 
             var dateReader = new Mock<IImageCreationDateReader>();

@@ -16,7 +16,7 @@ namespace ImageSortingModule.FileListGeneration
             this.sourceFilePath = sourceFilePath;
         }
 
-        public string[] GetFiles()
+        public List<string> GetFiles()
         {
             if (!File.Exists(sourceFilePath))
             {
@@ -33,7 +33,7 @@ namespace ImageSortingModule.FileListGeneration
                 result.AddRange(imageFiles);
             }
 
-            return result.ToArray();
+            return result;
         }
     }
 }

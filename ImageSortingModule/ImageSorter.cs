@@ -26,7 +26,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
         {
             Console.WriteLine("Sorting started!");
             var imageFiles = fileProvider.GetFiles();
-            var totalNumberOfFiles = imageFiles.Length;
+            var totalNumberOfFiles = imageFiles.Count;
             var currentFileNumber = 0;
             foreach (var image in imageFiles)
             {
