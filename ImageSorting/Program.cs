@@ -1,4 +1,5 @@
 ﻿using ImageSortingModule.Classification.EqualityCheck;
+using ImageSortingModule.FileListGeneration;
 using PhotoKinia.Modules.ImageSortingModule;
 using System;
 using System.IO;
@@ -10,8 +11,8 @@ namespace ImageSorting
     {
         static void Main(string[] args)
         {
-            var sort = new ImageSorter(null, new DateTimeClassification(new ExifCreationDateReader()), new MD5Check());
-            sort.Sort(args[0], args[1]);
+            var sort = new ImageSorter(new DirectoriesFileSource(), new DateTimeClassification(new ExifCreationDateReader()), new MD5Check());
+            sort.Sort(args[0]);
         }
     }
 }

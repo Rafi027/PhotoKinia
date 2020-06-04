@@ -22,13 +22,11 @@ namespace PhotoKinia.Modules.ImageSortingModule
             this.imageEquality = imageEquality;
         }
 
-        public void Sort(string inputDirectory, string outputDirectory)
+        public void Sort(string outputDirectory)
         {
             Console.WriteLine("Sorting started!");
-            var directoryInfo = new DirectoryInfo(inputDirectory);
-
-            var imageFiles = directoryInfo.GetFiles().Where(i => i.Extension.ToLower().Equals(".jpg")).Select(f => f.FullName).ToList();
-            var totalNumberOfFiles = imageFiles.Count;
+            var imageFiles = fileProvider.GetFiles();
+            var totalNumberOfFiles = imageFiles.Length;
             var currentFileNumber = 0;
             foreach (var image in imageFiles)
             {
