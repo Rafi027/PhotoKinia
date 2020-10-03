@@ -8,7 +8,7 @@ namespace ImageSortingModule.Utils.RecursionHelper
     //Based on pattern from:
     //https://volgarev.me/2013/09/27/tail-recursion-and-trampolining-in-csharp.html
     //
-    sealed class Bounce<T1, T2, TResult>
+    public sealed class Bounce<T1, T2, TResult>
     {
         public T1 Arg1 { get; private set; }
         public T2 Arg2 { get; private set; }

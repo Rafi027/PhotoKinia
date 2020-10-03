@@ -66,6 +66,7 @@
     <Compile Include="Modules\ImageSortingModule\ImageSorterTestFixture.cs" />
     <Compile Include="Modules\ImageSortingModule\MonthToStringTestFixture.cs" />
     <Compile Include="Modules\ImageSortingModule\RenameMethodTestFixture.cs" />
+    <Compile Include="Modules\ImageSortingModule\TrampolineTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

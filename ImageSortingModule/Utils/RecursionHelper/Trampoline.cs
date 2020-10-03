@@ -8,7 +8,7 @@ namespace ImageSortingModule.Utils.RecursionHelper
     //Based on pattern from:
     //https://volgarev.me/2013/09/27/tail-recursion-and-trampolining-in-csharp.html
     //
-    static class Trampoline
+    public static class Trampoline
     {
         public static TResult Start<T1, T2, TResult>(Func<T1, T2, Bounce<T1, T2, TResult>> action, T1 arg1, T2 arg2)
         {
@@ -22,9 +22,9 @@ namespace ImageSortingModule.Utils.RecursionHelper
                     result = bounce.Result;
                     break;
                 }
+                bounce = action(bounce.Arg1, bounce.Arg2);
             }
 
-            bounce = action(bounce.Arg1, bounce.Arg2);
 
             return result;
         }
