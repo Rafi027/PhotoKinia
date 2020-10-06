@@ -1,4 +1,5 @@
-﻿using PhotoKinia.Modules.ImageSortingModule;
+﻿using ImageSortingModule.Utils.RecursionHelper;
+using PhotoKinia.Modules.ImageSortingModule;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -54,6 +55,29 @@ namespace ImageSortingModule.FileListGeneration
                 result.AddRange(SearchDirectories(subdirectories[i]));
 
             return result;
+        }
+
+        private List<string> RecursiveSearch(string rootDirectory)
+        {
+            var directoriesToScan = new Stack<string>();
+            directoriesToScan.Push(rootDirectory);
+            var files = new List<string>();
+            Trampoline.Start(Iteration, directoriesToScan, files);
+
+            throw new NotImplementedException();
+        }
+
+        private Bounce<Stack<string>, List<string>, List<string>> Iteration(Stack<string> directoriesToScan, List<string> files)
+        {
+            var rootDirectory = directoriesToScan.Pop();
+            var subdirectories = Directory.EnumerateDirectories(directoriesToScan.Pop());
+            foreach (var subdirectory in subdirectories)
+                directoriesToScan.Push(subdirectory);
+
+            files.AddRange(GetFilesFromDirectory(rootDirectory, Extension));
+
+            return directoriesToScan.Count == 0 ? Bounce<Stack<string>, List<string>, List<string>>.End(files) :
+                Bounce<Stack<string>, List<string>, List<string>>.Continue(directoriesToScan, files);
         }
     }
 }
