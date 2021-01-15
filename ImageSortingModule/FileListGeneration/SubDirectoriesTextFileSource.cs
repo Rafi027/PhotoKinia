@@ -62,12 +62,12 @@ namespace ImageSortingModule.FileListGeneration
             var directoriesToScan = new Stack<string>();
             directoriesToScan.Push(rootDirectory);
             var files = new List<string>();
-            Trampoline.Start(Iteration, directoriesToScan, files);
+            Trampoline.Start(Iteration, files, directoriesToScan);
 
             throw new NotImplementedException();
         }
 
-        private Bounce<Stack<string>, List<string>, List<string>> Iteration(Stack<string> directoriesToScan, List<string> files)
+        private Bounce<List<string>, Stack<string>, List<string>> Iteration(List<string> files, Stack<string> directoriesToScan)
         {
             var rootDirectory = directoriesToScan.Pop();
             var subdirectories = Directory.EnumerateDirectories(directoriesToScan.Pop());
@@ -76,8 +76,8 @@ namespace ImageSortingModule.FileListGeneration
 
             files.AddRange(GetFilesFromDirectory(rootDirectory, Extension));
 
-            return directoriesToScan.Count == 0 ? Bounce<Stack<string>, List<string>, List<string>>.End(files) :
-                Bounce<Stack<string>, List<string>, List<string>>.Continue(directoriesToScan, files);
+            return directoriesToScan.Count == 0 ? Bounce<List<string>, Stack<string>, List<string>>.End(files) :
+                Bounce<List<string>, Stack<string>, List<string>>.Continue(files, directoriesToScan);
         }
     }
 }
