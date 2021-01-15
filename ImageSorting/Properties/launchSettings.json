@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ImageSorting": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Sortowanie\\100PENTX\" \"D:\\Sortowanie\\Output\""
+    }
+  }
+}

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PhotoKinia.Modules.ImageSortingModule
 {
-    internal interface IFileListGenerator
+    public interface IImageClassificationMethod
     {
-        string[] GetFiles();
+        ClassificationResult GetClassifiedFilePath(string imagePath);
     }
 }
