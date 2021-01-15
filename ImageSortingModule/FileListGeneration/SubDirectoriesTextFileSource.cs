@@ -30,7 +30,7 @@ namespace ImageSortingModule.FileListGeneration
             var result = new List<string>();
             foreach (var directory in directories)
             {
-                List<string> imageFiles = SearchDirectories(directory);
+                var imageFiles = RecursiveSearch(directory);
                 result.AddRange(imageFiles);
             }
 
@@ -45,32 +45,19 @@ namespace ImageSortingModule.FileListGeneration
             return imageFiles;
         }
 
-        private List<string> SearchDirectories(string directory)
-        {
-            var result = new List<string>();
-            var subdirectories = Directory.EnumerateDirectories(directory).ToArray();
-            if (subdirectories.Count() == 0)
-                return GetFilesFromDirectory(directory, Extension);
-            for (int i = 0; i < subdirectories.Count(); i++)
-                result.AddRange(SearchDirectories(subdirectories[i]));
-
-            return result;
-        }
-
         private List<string> RecursiveSearch(string rootDirectory)
         {
             var directoriesToScan = new Stack<string>();
             directoriesToScan.Push(rootDirectory);
             var files = new List<string>();
             Trampoline.Start(Iteration, files, directoriesToScan);
-
-            throw new NotImplementedException();
+            return files;
         }
 
         private Bounce<List<string>, Stack<string>, List<string>> Iteration(List<string> files, Stack<string> directoriesToScan)
         {
             var rootDirectory = directoriesToScan.Pop();
-            var subdirectories = Directory.EnumerateDirectories(directoriesToScan.Pop());
+            var subdirectories = Directory.EnumerateDirectories(rootDirectory);
             foreach (var subdirectory in subdirectories)
                 directoriesToScan.Push(subdirectory);
 
