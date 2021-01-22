@@ -34,6 +34,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
             var currentFileNumber = 0;
             foreach (var image in imageFiles)
             {
+                currentFileNumber++;
                 var classification = imageClassification.GetClassifiedFilePath(image);
                 if(!classification.Success)
                 {
@@ -56,7 +57,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
                         if (!Directory.Exists(directoryPath))
                             Directory.CreateDirectory(directoryPath);
 
-                        Logger.Info("Copy file {currentFileNumber}/{totalNumberOfFiles} {sourceImage} to {destinationPath}", ++currentFileNumber, totalNumberOfFiles, Path.GetFileName(image), classification.ClassifiedPath.RelativePath);
+                        Logger.Info("Copy file {currentFileNumber}/{totalNumberOfFiles} {sourceImage} to {destinationPath}", currentFileNumber, totalNumberOfFiles, Path.GetFileName(image), classification.ClassifiedPath.RelativePath);
 
                         var destinationFilePath = Path.Combine(outputDirectory, classification.ClassifiedPath.RelativePath);
                         if (!File.Exists(destinationFilePath))
