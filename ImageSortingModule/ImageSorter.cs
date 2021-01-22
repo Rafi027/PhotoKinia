@@ -1,5 +1,6 @@
 ﻿using ImageSortingModule.Classification.EqualityCheck;
 using ImageSortingModule.Classification.RenameMethod;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,12 +12,15 @@ namespace PhotoKinia.Modules.ImageSortingModule
 {
     public class ImageSorter
     {
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+
         private readonly IFileListGenerator fileProvider;
         private readonly IImageClassificationMethod imageClassification;
         private readonly IImageEqualityCheck imageEquality;
 
         public ImageSorter(IFileListGenerator fileProvider, IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality)
         {
+            Logger.Trace("ImageSorter(IFileListGenerator fileProvider, IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality)");
             this.fileProvider = fileProvider;
             this.imageClassification = imageClassification;
             this.imageEquality = imageEquality;
@@ -24,7 +28,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
 
         public void Sort(string outputDirectory)
         {
-            Console.WriteLine("Sorting started!");
+            Logger.Trace("void Sort({outputDirectory})", outputDirectory);
             var imageFiles = fileProvider.GetFiles();
             var totalNumberOfFiles = imageFiles.Count;
             var currentFileNumber = 0;
@@ -33,7 +37,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
                 var classification = imageClassification.GetClassifiedFilePath(image);
                 if(!classification.Success)
                 {
-                    Console.WriteLine($"Cannot classify file: {image}. File skipped.");
+                    Logger.Warn("Cannot classify file: {image}. File skipped.", image);
                     continue;
                 }
                 try
@@ -42,13 +46,18 @@ namespace PhotoKinia.Modules.ImageSortingModule
                     while (true)
                     {
                         if(++safetyBreak > 10000)
+                        {
+                            Logger.Fatal("Cannot find new file name for file: {image}", image);
                             throw new InvalidOperationException($"Cannot find new file name for file: {image}");
+                        }
                         
                         string directoryPath = Path.Combine(outputDirectory,
                                     classification.ClassifiedPath.Year, classification.ClassifiedPath.Month, classification.ClassifiedPath.Day);
                         if (!Directory.Exists(directoryPath))
                             Directory.CreateDirectory(directoryPath);
-                        Console.WriteLine($"Copy file {++currentFileNumber}/{totalNumberOfFiles} {Path.GetFileName(image)} to {classification.ClassifiedPath.RelativePath}");
+
+                        Logger.Info("Copy file {currentFileNumber}/{totalNumberOfFiles} {sourceImage} to {destinationPath}", ++currentFileNumber, totalNumberOfFiles, Path.GetFileName(image), classification.ClassifiedPath.RelativePath);
+
                         var destinationFilePath = Path.Combine(outputDirectory, classification.ClassifiedPath.RelativePath);
                         if (!File.Exists(destinationFilePath))
                         {
@@ -58,16 +67,17 @@ namespace PhotoKinia.Modules.ImageSortingModule
 
                         if (imageEquality.Equals(image, destinationFilePath))
                         {
-                            Console.WriteLine("File alredy exists. Skip.");
+                            Logger.Info("File {filePath} already exists at location {destinationFilePath}. Skip", image, destinationFilePath);
                             break;
                         }
                         var rename = new IncrementalRename();
                         classification.ClassifiedPath.FileName = rename.GetNewFileName(classification.ClassifiedPath.FileName);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    Console.WriteLine($"ERROR - Cannot copy image. Source: {image}. Destination: {classification.ClassifiedPath.RelativePath}");
+                    Logger.Error("Cannot copy image. Source: {sourcePath}. Destination: {destinationPath}", image, classification.ClassifiedPath.RelativePath);
+                    Logger.Error(ex);
                 }
             }
         }
