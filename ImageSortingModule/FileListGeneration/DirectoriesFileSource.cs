@@ -1,4 +1,5 @@
-﻿using PhotoKinia.Modules.ImageSortingModule;
+﻿using NLog;
+using PhotoKinia.Modules.ImageSortingModule;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +10,7 @@ namespace ImageSortingModule.FileListGeneration
 {
     public class DirectoriesFileSource : IFileListGenerator
     {
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly string sourceFilePath;
 
         public DirectoriesFileSource(string sourceFilePath)
@@ -20,7 +22,7 @@ namespace ImageSortingModule.FileListGeneration
         {
             if (!File.Exists(sourceFilePath))
             {
-                Console.WriteLine($"Error - Cannot find file with photo directories. File: {sourceFilePath}");
+                Logger.Error("Cannot find file with photo directories. File: {sourceFilePath}", sourceFilePath);
                 return null;
             }
 
