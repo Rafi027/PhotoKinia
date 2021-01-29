@@ -19,7 +19,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
             {
                 var metadata = ImageMetadataReader.ReadMetadata(stream);
 
-                switch (Path.GetExtension(imagePath))
+                switch (Path.GetExtension(imagePath).ToLower())
                 {
                     case ".mp4":
                         return ReadMovieHeaderCreationDate(metadata, imagePath);
