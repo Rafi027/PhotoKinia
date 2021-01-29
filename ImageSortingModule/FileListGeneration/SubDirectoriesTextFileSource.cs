@@ -12,7 +12,6 @@ namespace ImageSortingModule.FileListGeneration
     public class SubDirectoriesTextFileSource : IFileListGenerator
     {
         private static Logger Logger = LogManager.GetCurrentClassLogger();
-        private const string Extension = ".jpg";
         private readonly string sourceFilePath;
 
         public SubDirectoriesTextFileSource(string sourceFilePath)
@@ -40,11 +39,15 @@ namespace ImageSortingModule.FileListGeneration
 
         }
 
-        private static List<string> GetFilesFromDirectory(string directory, string extension)
+        private IEnumerable<string> GetFilesFromDirectory(string directory)
         {
             var directoryInfo = new DirectoryInfo(directory);
-            var imageFiles = directoryInfo.GetFiles().Where(i => i.Extension.ToLower().Equals(".jpg")).Select(f => f.FullName).ToList();
-            return imageFiles;
+            var imageFiles = directoryInfo.GetFiles().ToArray();
+            foreach (var file in imageFiles)
+            {
+                if(file.Extension.ToLower().Equals(".jpg") || file.Extension.ToLower().Equals(".dng"))
+                    yield  return file.FullName;
+            }
         }
 
         private List<string> RecursiveSearch(string rootDirectory)
@@ -63,7 +66,7 @@ namespace ImageSortingModule.FileListGeneration
             foreach (var subdirectory in subdirectories)
                 directoriesToScan.Push(subdirectory);
 
-            files.AddRange(GetFilesFromDirectory(rootDirectory, Extension));
+            files.AddRange(GetFilesFromDirectory(rootDirectory));
 
             return directoriesToScan.Count == 0 ? Bounce<List<string>, Stack<string>, List<string>>.End(files) :
                 Bounce<List<string>, Stack<string>, List<string>>.Continue(files, directoriesToScan);
