@@ -11,12 +11,9 @@ namespace PhotoKiniaTests.Modules.ImageSortingModule
     [TestClass]
     public class ImageSorterTestFixture
     {
-        private IFileListGenerator fileProvider;
-
         [TestMethod]
         public void ImageClassificationByDate()
         {
-            const string StorageDirectory = @"D:\Photos\";
             var fileProviderMock = new Mock<IFileListGenerator>();
             var mockFilesDictionary = new Dictionary<string, string>();
             mockFilesDictionary.Add(@"D:\Pentax\dcim\001.jpg", @"C:\PhotoLibrary");
@@ -27,6 +24,7 @@ namespace PhotoKiniaTests.Modules.ImageSortingModule
             mockFiles.Add(@"D:\Pentax\dcim\100\003.jpg", new DateTime(2019, 2, 13, 10, 39, 4));
             mockFiles.Add(@"D:\Olympus\dcim\004.jpg", new DateTime(2019, 2, 1, 19, 20, 4));
             mockFiles.Add(@"D:\Olympus\dcim\005.jpg", new DateTime(2019, 2, 1, 10, 39, 4));
+            mockFiles.Add(@"D:\Olympus\dcim\005.dng", new DateTime(2019, 2, 1, 10, 39, 4));
 
             var mockResults = new Dictionary<string, string>();
             mockResults.Add(@"D:\Pentax\dcim\100\001.jpg", @"2019\1. Styczeń\1\001.jpg");
@@ -34,12 +32,13 @@ namespace PhotoKiniaTests.Modules.ImageSortingModule
             mockResults.Add(@"D:\Pentax\dcim\100\003.jpg", @"2019\2. Luty\13\003.jpg");
             mockResults.Add(@"D:\Olympus\dcim\004.jpg", @"2019\2. Luty\1\004.jpg");
             mockResults.Add(@"D:\Olympus\dcim\005.jpg", @"2019\2. Luty\1\005.jpg");
+            mockResults.Add(@"D:\Olympus\dcim\005.dng", @"2019\2. Luty\1\005.dng");
 
 
 
             var files = new List<string>(mockFiles.Keys).ToArray();
             fileProviderMock.Setup(mock => mock.GetFiles()).Returns(mockFiles.Keys.ToList());
-            fileProvider = fileProviderMock.Object;
+            var fileProvider = fileProviderMock.Object;
 
             var dateReader = new Mock<IImageCreationDateReader>();
             foreach (var file in mockFiles.Keys)

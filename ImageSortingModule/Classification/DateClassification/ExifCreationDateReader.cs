@@ -13,20 +13,19 @@ namespace PhotoKinia.Modules.ImageSortingModule
     {
         public DateTime Read(string imagePath)
         {
-            try
-            {
-                using (var stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
-                {
-                    var metadata = ImageMetadataReader.ReadMetadata(stream);
 
-                    var exifData = metadata.OfType<ExifSubIfdDirectory>().FirstOrDefault();
-                    return exifData.GetDateTime(ExifDirectoryBase.TagDateTimeOriginal);
+            using (var stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+            {
+                var metadata = ImageMetadataReader.ReadMetadata(stream);
+
+                var exifDataDirectories = metadata.OfType<ExifSubIfdDirectory>();
+                foreach (var exifData in exifDataDirectories)
+                {
+                    if (exifData.TryGetDateTime(ExifDirectoryBase.TagDateTimeOriginal, out DateTime creationDate))
+                        return creationDate;
                 }
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            throw new Exception($"Cannot read file creation date from exif. File path: {imagePath}");
         }
     }
 }
