@@ -31,6 +31,8 @@ namespace ImageSortingModule.FileListGeneration
             var result = new List<string>();
             foreach (var directory in directories)
             {
+                if (directory.StartsWith("#"))
+                    continue;
                 var imageFiles = RecursiveSearch(directory);
                 result.AddRange(imageFiles);
             }
