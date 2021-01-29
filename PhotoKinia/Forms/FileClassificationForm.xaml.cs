@@ -25,7 +25,7 @@ namespace PhotoKinia.Forms
         public FileClassificationForm()
         {
             InitializeComponent();
-            var reader = new ExifCreationDateReader();
+            var reader = new MetadataCreationDateReader();
             var exists = File.Exists(@"Images\ExifDemo\demo.jpg");
             var date = reader.Read(@"Images\ExifDemo\demo.jpg");
 

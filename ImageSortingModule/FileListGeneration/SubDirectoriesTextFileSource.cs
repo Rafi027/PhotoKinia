@@ -47,7 +47,7 @@ namespace ImageSortingModule.FileListGeneration
             var imageFiles = directoryInfo.GetFiles().ToArray();
             foreach (var file in imageFiles)
             {
-                if(file.Extension.ToLower().Equals(".jpg") || file.Extension.ToLower().Equals(".dng"))
+                if(file.Extension.ToLower().Equals(".jpg") || file.Extension.ToLower().Equals(".dng") || file.Extension.ToLower().Equals(".mp4"))
                     yield  return file.FullName;
             }
         }

@@ -12,7 +12,7 @@ namespace ImageSorting
         static void Main(string[] args)
         {
             NLog.LogManager.GetCurrentClassLogger().Info("Session started");
-            var sort = new ImageSorter(new SubDirectoriesTextFileSource(args[0]), new DateTimeClassification(new ExifCreationDateReader()), new MD5Check());
+            var sort = new ImageSorter(new SubDirectoriesTextFileSource(args[0]), new DateTimeClassification(new MetadataCreationDateReader()), new MD5Check());
             sort.Sort(args[1]);
         }
     }
