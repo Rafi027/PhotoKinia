@@ -2,7 +2,7 @@
 
 namespace PhotoKinia.Modules.ImageSortingModule
 {
-    public  interface IImageCreationDateReader
+    public  interface ICreationDateReader
     {
         DateTime Read(string imagePath);
     }

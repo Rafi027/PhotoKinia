@@ -11,10 +11,10 @@ namespace PhotoKinia.Modules.ImageSortingModule
 {
     public class DateTimeClassification : IImageClassificationMethod
     {
-        private readonly IImageCreationDateReader dateReader;
+        private readonly ICreationDateReader dateReader;
         private readonly MonthToString monthToString = new MonthToString();
 
-        public DateTimeClassification(IImageCreationDateReader dateReader)
+        public DateTimeClassification(ICreationDateReader dateReader)
         {
             this.dateReader = dateReader;
         }
