@@ -7,7 +7,7 @@ namespace ImageSortingModule.FileListGeneration
 {
     internal class PathReductor
     {
-        internal List<string> Reduce(List<string> directories)
+        internal List<string> Reduce(IEnumerable<string> directories)
         {
             var result = directories.ToList();
             var sorted = directories.OrderBy(d => d.Length);
