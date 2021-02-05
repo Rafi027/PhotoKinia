@@ -21,6 +21,11 @@ namespace ImageSortingModule.FileListGeneration
 
             }
 
+            result = result.GroupBy(d => d)
+                .Where(g => g.Count() >= 1)
+                .Select(y => y.Key)
+                .ToList();
+
             return result;
         }
     }
