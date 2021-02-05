@@ -27,7 +27,10 @@ namespace ImageSortingModule.FileListGeneration
                 return null;
             }
 
-            var directories = File.ReadAllLines(sourceFilePath);
+            var directories = File.ReadAllLines(sourceFilePath).ToList();
+            var reductor = new PathReductor();
+            directories = reductor.Reduce(directories);
+
             var result = new List<string>();
             foreach (var directory in directories)
             {
@@ -36,6 +39,7 @@ namespace ImageSortingModule.FileListGeneration
                 var imageFiles = RecursiveSearch(directory);
                 result.AddRange(imageFiles);
             }
+
 
             return result;
 
