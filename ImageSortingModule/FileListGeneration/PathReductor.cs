@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace ImageSortingModule.FileListGeneration
 {
@@ -8,7 +9,19 @@ namespace ImageSortingModule.FileListGeneration
     {
         internal List<string> Reduce(List<string> directories)
         {
-            throw new NotImplementedException();
+            var result = directories.ToList();
+            var sorted = directories.OrderBy(d => d.Length);
+            foreach (var currentDirectory in directories)
+            {
+                var subDirectories = directories.Where(d => d.StartsWith(currentDirectory) && !string.Equals(d, currentDirectory));
+                foreach (var subDirectory in subDirectories)
+                {
+                    result.Remove(subDirectory);
+                } 
+
+            }
+
+            return result;
         }
     }
 }
