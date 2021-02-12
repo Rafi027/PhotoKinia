@@ -1,5 +1,6 @@
 ﻿using ImageSortingModule.Classification.EqualityCheck;
 using ImageSortingModule.Classification.RenameMethod;
+using ImageSortingModule.Files;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -17,13 +18,15 @@ namespace PhotoKinia.Modules.ImageSortingModule
         private readonly IFileListGenerator fileProvider;
         private readonly IImageClassificationMethod imageClassification;
         private readonly IImageEqualityCheck imageEquality;
+        private readonly IFileOperation fileOperation;
 
-        public ImageSorter(IFileListGenerator fileProvider, IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality)
+        public ImageSorter(IFileListGenerator fileProvider, IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality, IFileOperation fileOperation)
         {
             Logger.Trace("ImageSorter(IFileListGenerator fileProvider, IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality)");
             this.fileProvider = fileProvider;
             this.imageClassification = imageClassification;
             this.imageEquality = imageEquality;
+            this.fileOperation = fileOperation;
         }
 
         public void Sort(string outputDirectory)
@@ -62,7 +65,8 @@ namespace PhotoKinia.Modules.ImageSortingModule
                         var destinationFilePath = Path.Combine(outputDirectory, classification.ClassifiedPath.RelativePath);
                         if (!File.Exists(destinationFilePath))
                         {
-                            File.Copy(image, destinationFilePath, false);
+                            if (!fileOperation.Process(image, destinationFilePath))
+                                Logger.Error("Cannot process file: {filePath}", image);
                             break;
                         }
 
