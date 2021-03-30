@@ -1,4 +1,12 @@
 ﻿<Controls:MetroWindow x:Class="PhotoKinia.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,7 +16,7 @@
         xmlns:local="clr-namespace:PhotoKinia"
         mc:Ignorable="d"
         Title="" Height="500" Width="800" ResizeMode="CanResizeWithGrip">
-    <Grid Background="#FF8BDAC7">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="3*"/>
@@ -111,7 +119,12 @@
             <Label Content="Kinia" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
         </StackPanel>
         <Button Content="Przytnij" propertyExtensions:AttachedImageExtension.Image="Images/appbar.crop.png" Style="{StaticResource AnimatedImageButton}" BorderBrush="GreenYellow" Grid.Column="1" Margin="10"/>
+        <materialDesign:Card Padding="32" Margin="16" Grid.Column="2">
+            <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">My First Material Design App</TextBlock>
+        </materialDesign:Card>
     </Grid>
+
+
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Button Content="Opcje"/>
