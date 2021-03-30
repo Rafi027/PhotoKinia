@@ -1,4 +1,4 @@
-﻿<Controls:MetroWindow x:Class="PhotoKinia.MainWindow"
+﻿<Window x:Class="PhotoKinia.MainWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -123,11 +123,4 @@
             <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">My First Material Design App</TextBlock>
         </materialDesign:Card>
     </Grid>
-
-
-    <Controls:MetroWindow.RightWindowCommands>
-        <Controls:WindowCommands>
-            <Button Content="Opcje"/>
-        </Controls:WindowCommands>
-    </Controls:MetroWindow.RightWindowCommands>
-</Controls:MetroWindow>
+</Window>
