@@ -26,7 +26,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Button propertyExtensions:AttachedImageExtension.Image="Images/appbar.image.landscape.png" Content="Zmień format" Focusable="False" BorderBrush="Yellow" Margin="43,41,39,32.169" Style="{StaticResource AnimatedImageButton}" Click="ConvertPngToJpg">
+        <Button propertyExtensions:AttachedImageExtension.Image="Images/appbar.image.landscape.png" Content="Zmień format" Focusable="False" BorderBrush="Yellow" Margin="43,41,39,32.169" Click="ConvertPngToJpg">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -118,7 +118,7 @@
             <Label Content="Photo" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
             <Label Content="Kinia" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
         </StackPanel>
-        <Button Content="Przytnij" propertyExtensions:AttachedImageExtension.Image="Images/appbar.crop.png" Style="{StaticResource AnimatedImageButton}" BorderBrush="GreenYellow" Grid.Column="1" Margin="10"/>
+        <Button Content="Przytnij" propertyExtensions:AttachedImageExtension.Image="Images/appbar.crop.png" BorderBrush="GreenYellow" Grid.Column="1" Margin="10"/>
         <materialDesign:Card Padding="32" Margin="16" Grid.Column="2">
             <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">My First Material Design App</TextBlock>
         </materialDesign:Card>

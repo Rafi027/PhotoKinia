@@ -1,4 +1,4 @@
-﻿<Controls:MetroWindow x:Class="PhotoKinia.Forms.FileClassificationForm"
+﻿<Window x:Class="PhotoKinia.Forms.FileClassificationForm"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -29,4 +29,4 @@
             </StackPanel>
         </Grid>
     </Grid>
-</Controls:MetroWindow>
+</Window>

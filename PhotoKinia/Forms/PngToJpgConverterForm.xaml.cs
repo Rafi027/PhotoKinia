@@ -18,7 +18,7 @@ namespace PhotoKinia.Forms
     /// <summary>
     /// Interaction logic for PngToJpgConverterForm.xaml
     /// </summary>
-    public partial class PngToJpgConverterForm : MetroWindow
+    public partial class PngToJpgConverterForm : Window
     {
         public PngToJpgConverterForm()
         {

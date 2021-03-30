@@ -20,7 +20,7 @@ namespace PhotoKinia.Forms
     /// <summary>
     /// Interaction logic for FileClassificationForm.xaml
     /// </summary>
-    public partial class FileClassificationForm : MetroWindow
+    public partial class FileClassificationForm : Window
     {
         public FileClassificationForm()
         {
