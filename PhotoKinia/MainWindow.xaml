@@ -43,10 +43,10 @@
                 <Label Content="Kinia" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
             </StackPanel>
             <Button Content="Click me" Focusable="False" BorderBrush="Yellow" Click="ConvertPngToJpg" Grid.Row="1" Margin="10,10,10,0" Height="49" VerticalAlignment="Top"/>
-            <Button Grid.Row="2" Margin="10" Height="Auto">
-                <DockPanel HorizontalAlignment="Left" >
+            <Button Grid.Row="2" Margin="10" Height="Auto" HorizontalContentAlignment="Left">
+                <DockPanel >
                     <materialDesign:PackIcon DockPanel.Dock="Left" Kind="ExitToApp" Width="25" Height="25"/>
-                    <Label Content="Exit" HorizontalAlignment="Center"/>
+                    <Label Content="Exit" Foreground="{DynamicResource MaterialDesignBackground}" HorizontalAlignment="Center" Margin="10 0 0 0"/>
                 </DockPanel>
             </Button>
         </Grid>
