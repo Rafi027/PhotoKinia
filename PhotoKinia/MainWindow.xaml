@@ -24,60 +24,33 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="CLick me" Focusable="False" BorderBrush="Yellow" Click="ConvertPngToJpg" Grid.Column="0">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
-            <Button.RenderTransform>
-                <ScaleTransform x:Name="buttonScale" ScaleX="0.98" ScaleY="1.02"/>
-            </Button.RenderTransform>
-            <Button.Triggers>
-                <EventTrigger RoutedEvent="Button.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="buttonScale"
-                                         Storyboard.TargetProperty="ScaleX"
-                                         From="0.98" To="1.02" Duration="0:0:0.3"
-                                         AutoReverse="False" RepeatBehavior="1x"/>
-                            <DoubleAnimation Storyboard.TargetName="buttonScale"
-                                         Storyboard.TargetProperty="ScaleY"
-                                         From="0.98" To="1.02" Duration="0:0:0.3"
-                                         AutoReverse="false" RepeatBehavior="1x"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="Button.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="buttonScale"
-                                         Storyboard.TargetProperty="ScaleX"
-                                         From="1.02" To="0.98" Duration="0:0:0.3"
-                                         AutoReverse="False" RepeatBehavior="1x"/>
-                            <DoubleAnimation Storyboard.TargetName="buttonScale"
-                                         Storyboard.TargetProperty="ScaleY"
-                                         From="1.02" To="0.98" Duration="0:0:0.3"
-                                         AutoReverse="False" RepeatBehavior="1x"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Button.Triggers>
-            <!--<StackPanel>
-                <Image Source="Images/appbar.image.landscape.png" Stretch="UniformToFill" Height="100" Width="100"/>
-                <TextBlock Text="Konwertuj PNG"/>
-            </StackPanel>-->
-        </Button>
-        <StackPanel Height="107" Margin="19,0,0,16" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="73">
-            <StackPanel.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-28.578"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </StackPanel.RenderTransform>
-            <Label Content="Photo" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
-            <Label Content="Kinia" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
-        </StackPanel>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="137"/>
+                <RowDefinition/>
+                <RowDefinition Height="65"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Height="107" Margin="19,0,0,16" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="73">
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-28.578"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
+                <Label Content="Photo" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
+                <Label Content="Kinia" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
+            </StackPanel>
+            <Button Content="Click me" Focusable="False" BorderBrush="Yellow" Click="ConvertPngToJpg" Grid.Row="1" Margin="10,10,10,0" Height="49" VerticalAlignment="Top"/>
+            <Button Grid.Row="2" Margin="10" Height="Auto">
+                <DockPanel HorizontalAlignment="Left" >
+                    <materialDesign:PackIcon DockPanel.Dock="Left" Kind="ExitToApp" Width="25" Height="25"/>
+                    <Label Content="Exit" HorizontalAlignment="Center"/>
+                </DockPanel>
+            </Button>
+        </Grid>
+
         <materialDesign:Card Padding="32" Margin="16,10,16,16" Grid.Column="1">
             <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">My First Material Design App</TextBlock>
         </materialDesign:Card>
