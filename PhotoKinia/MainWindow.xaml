@@ -18,15 +18,13 @@
         Title="" Height="500" Width="800" ResizeMode="CanResizeWithGrip">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Button propertyExtensions:AttachedImageExtension.Image="Images/appbar.image.landscape.png" Content="Zmień format" Focusable="False" BorderBrush="Yellow" Margin="43,41,39,32.169" Click="ConvertPngToJpg">
+        <Button Content="CLick me" Focusable="False" BorderBrush="Yellow" Click="ConvertPngToJpg" Grid.Column="0">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
@@ -68,45 +66,7 @@
                 <TextBlock Text="Konwertuj PNG"/>
             </StackPanel>-->
         </Button>
-
-        <Button Content="Ship via Wells, Fargo &amp; Co." HorizontalAlignment="Right" VerticalAlignment="Center"
-            Padding="20,10" FontSize="16"
-            RenderTransformOrigin="0.5,0.5" Click="Button_Click" Margin="0,133.831,28,109" Grid.Column="2" Grid.Row="1" >
-            <Button.RenderTransform>
-                <ScaleTransform x:Name="scaleTransform" ScaleX="0.98" ScaleY="1.02"/>
-            </Button.RenderTransform>
-            <Button.Triggers>
-                <EventTrigger RoutedEvent="Button.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                         Storyboard.TargetProperty="ScaleX"
-                                         From="0.98" To="1.02" Duration="0:0:0.3"
-                                         AutoReverse="False" RepeatBehavior="1x"/>
-                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                         Storyboard.TargetProperty="ScaleY"
-                                         From="0.98" To="1.02" Duration="0:0:0.3"
-                                         AutoReverse="false" RepeatBehavior="1x"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="Button.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                         Storyboard.TargetProperty="ScaleX"
-                                         From="1.02" To="0.98" Duration="0:0:0.3"
-                                         AutoReverse="False" RepeatBehavior="1x"/>
-                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                         Storyboard.TargetProperty="ScaleY"
-                                         From="1.02" To="0.98" Duration="0:0:0.3"
-                                         AutoReverse="False" RepeatBehavior="1x"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Button.Triggers>
-        </Button>
-        <StackPanel Height="107" Margin="19,0,0,16" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="73" Grid.Row="1">
+        <StackPanel Height="107" Margin="19,0,0,16" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="73">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -115,11 +75,10 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </StackPanel.RenderTransform>
-            <Label Content="Photo" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
-            <Label Content="Kinia" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
+            <Label Content="Photo" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
+            <Label Content="Kinia" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
         </StackPanel>
-        <Button Content="Przytnij" propertyExtensions:AttachedImageExtension.Image="Images/appbar.crop.png" BorderBrush="GreenYellow" Grid.Column="1" Margin="10"/>
-        <materialDesign:Card Padding="32" Margin="16" Grid.Column="2">
+        <materialDesign:Card Padding="32" Margin="16,10,16,16" Grid.Column="1">
             <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">My First Material Design App</TextBlock>
         </materialDesign:Card>
     </Grid>
