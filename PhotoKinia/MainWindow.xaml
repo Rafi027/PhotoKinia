@@ -42,7 +42,15 @@
                 <Label Content="Photo" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
                 <Label Content="Kinia" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
             </StackPanel>
-            <Button Content="Click me" Focusable="False" BorderBrush="Yellow" Click="ConvertPngToJpg" Grid.Row="1" Margin="10,10,10,0" Height="49" VerticalAlignment="Top"/>
+            <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10,4,4,4">
+                <Button Focusable="False" Click="ConvertPngToJpg" Margin="0,10,0,0" Height="49" HorizontalContentAlignment="Left" IsEnabled="False">
+                    <DockPanel >
+                        <materialDesign:PackIcon DockPanel.Dock="Left" Kind="SortCalendarDescending" Width="25" Height="25" Foreground="{DynamicResource MaterialDesignBackground}"/>
+                        <Label Content="Sorting" Foreground="{DynamicResource MaterialDesignBackground}" HorizontalAlignment="Center" Margin="10 0 0 0"/>
+                    </DockPanel>
+                </Button>
+            </StackPanel>
+            
             <Border BorderBrush="Black" BorderThickness="0 1 0 0" Margin="10,10,0,-12" Grid.Row="2">
                 <Button Grid.Row="2" Margin="0,9,0,30" Height="Auto" HorizontalContentAlignment="Left">
                     <DockPanel >
