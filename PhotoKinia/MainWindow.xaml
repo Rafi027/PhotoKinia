@@ -46,7 +46,7 @@
             <Border BorderBrush="Black" BorderThickness="0 1 0 0" Margin="10,10,0,-12" Grid.Row="2">
                 <Button Grid.Row="2" Margin="0,9,0,30" Height="Auto" HorizontalContentAlignment="Left">
                     <DockPanel >
-                        <materialDesign:PackIcon DockPanel.Dock="Left" Kind="ExitToApp" Width="25" Height="25"/>
+                        <materialDesign:PackIcon DockPanel.Dock="Left" Kind="ExitToApp" Width="25" Height="25" Foreground="{DynamicResource MaterialDesignBackground}"/>
                         <Label Content="Exit" Foreground="{DynamicResource MaterialDesignBackground}" HorizontalAlignment="Center" Margin="10 0 0 0"/>
                     </DockPanel>
                 </Button>
