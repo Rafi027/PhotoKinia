@@ -15,7 +15,11 @@
         xmlns:propertyExtensions="clr-namespace:PhotoKinia.Extensions.PropertyExtensions"
         xmlns:local="clr-namespace:PhotoKinia"
         mc:Ignorable="d"
-        Height="500" Width="800" ResizeMode="CanResizeWithGrip" WindowStyle="None" AllowsTransparency="True">
+        Height="500" Width="800" 
+        ResizeMode="CanResizeWithGrip"
+        WindowStyle="None" 
+        AllowsTransparency="True"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="31*"/>
@@ -53,7 +57,7 @@
             </StackPanel>
 
             <Border BorderBrush="Black" BorderThickness="0 1 0 0" Margin="10,10,0,-12" Grid.Row="2">
-                <Button Grid.Row="2" Margin="0,9,0,30" Height="Auto" HorizontalContentAlignment="Left">
+                <Button x:Name="btnExit" Grid.Row="2" Margin="0,9,0,30" Height="Auto" HorizontalContentAlignment="Left" Click="btnExit_Click">
                     <DockPanel >
                         <materialDesign:PackIcon DockPanel.Dock="Left" Kind="ExitToApp" Width="25" Height="25" Foreground="{DynamicResource MaterialDesignBackground}"/>
                         <Label Content="Exit" Foreground="{DynamicResource MaterialDesignBackground}" HorizontalAlignment="Center" Margin="10 0 0 0"/>
@@ -65,13 +69,13 @@
         <materialDesign:Card Padding="32" Margin="16,10,10,16" Grid.Column="1" Grid.Row="1">
             <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">My First Material Design App</TextBlock>
         </materialDesign:Card>
-        <Button  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,4,10,0" VerticalAlignment="Top" Width="17" Padding="0">
+        <Button x:Name="btnTitleClose"  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,4,10,0" VerticalAlignment="Top" Width="17" Padding="0" Click="btnExit_Click">
             <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowClose" Foreground="{DynamicResource MaterialDesignBackground}"/>
         </Button>
-        <Button  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,4,32,0" VerticalAlignment="Top" Width="17" Padding="0">
+        <Button x:Name="btnMaximize"  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,4,32,0" VerticalAlignment="Top" Width="17" Padding="0" Click="btnMaximize_Click">
             <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowMaximize" Foreground="{DynamicResource MaterialDesignBackground}"/>
         </Button>
-        <Button  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,4,54,0" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Width="17" Padding="0 3">
+        <Button x:Name="btnMinimize" Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,4,54,0" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Width="17" Padding="0 3" Click="btnMinimize_Click">
             <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowMinimize" Foreground="{DynamicResource MaterialDesignBackground}"/>
         </Button>
     </Grid>
