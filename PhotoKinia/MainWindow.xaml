@@ -66,7 +66,28 @@
         </Grid>
 
         <materialDesign:Card Padding="32" Margin="16,10,10,16" Grid.Column="1" Grid.Row="1">
-            <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">My First Material Design App</TextBlock>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="63"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" Grid.RowSpan="3">Directories with images to sort:</TextBlock>
+                <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.Row="1">
+                    <TextBlock Text="C:\Document\Images" />
+                    <TextBlock Text="D:\My old photos\holidays" />
+                    <TextBlock Text="D:\Fooo" />
+                    <TextBlock Text="D:\Lat christmas" />
+                </ListBox>
+                <ComboBox Grid.Row="2" Style="{StaticResource MaterialDesignOutlinedComboBox}" ToolTip="Select file operating mode" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}" 
+                          materialDesign:HintAssist.Hint="File mode" ItemsSource="{Binding ShortStringList}" Margin="10,7,0,6" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="131">
+                    <ComboBoxItem>Copy</ComboBoxItem>
+                    <ComboBoxItem>Move</ComboBoxItem>
+                </ComboBox>
+                <Button Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Add directory" VerticalAlignment="Bottom" Width="50" Grid.Row="2" HorizontalAlignment="Right" Padding="0" Height="50" Margin="0,0,0,6">
+                    <materialDesign:PackIcon Kind="Plus" Width="50" Height="50"/>
+                </Button>
+            </Grid>
         </materialDesign:Card>
         <Grid x:Name="grdTitleBar" Background="Transparent" Grid.ColumnSpan="2" MouseLeftButtonDown="grdTitleBar_MouseLeftButtonDown" MouseDown="grdTitleBar_MouseDown">
             <Button x:Name="btnTitleClose"  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,10,10,0" VerticalAlignment="Top" Width="17" Padding="0" Click="btnExit_Click">
