@@ -15,16 +15,17 @@
         xmlns:propertyExtensions="clr-namespace:PhotoKinia.Extensions.PropertyExtensions"
         xmlns:local="clr-namespace:PhotoKinia"
         mc:Ignorable="d"
-        Title="" Height="500" Width="800" ResizeMode="CanResizeWithGrip">
+        Height="500" Width="800" ResizeMode="CanResizeWithGrip" WindowStyle="None" AllowsTransparency="True">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="469*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="120"/>
                 <RowDefinition/>
@@ -39,8 +40,8 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </StackPanel.RenderTransform>
-                <Label Content="Photo" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
-                <Label Content="Kinia" HorizontalAlignment="Left" Height="45" VerticalContentAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
+                <TextBlock Text="Photo"  HorizontalAlignment="Left" Height="45"  Style="{DynamicResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
+                <TextBlock Text="Kinia" HorizontalAlignment="Left" Height="45"  Style="{DynamicResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold" FontSize="32" FontFamily="Gabriola"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10,4,4,4">
                 <Button Focusable="False" Click="ConvertPngToJpg" Margin="0,10,0,0" Height="49" HorizontalContentAlignment="Left" IsEnabled="False">
@@ -50,7 +51,7 @@
                     </DockPanel>
                 </Button>
             </StackPanel>
-            
+
             <Border BorderBrush="Black" BorderThickness="0 1 0 0" Margin="10,10,0,-12" Grid.Row="2">
                 <Button Grid.Row="2" Margin="0,9,0,30" Height="Auto" HorizontalContentAlignment="Left">
                     <DockPanel >
@@ -61,8 +62,17 @@
             </Border>
         </Grid>
 
-        <materialDesign:Card Padding="32" Margin="16,10,16,16" Grid.Column="1">
+        <materialDesign:Card Padding="32" Margin="16,10,10,16" Grid.Column="1" Grid.Row="1">
             <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">My First Material Design App</TextBlock>
         </materialDesign:Card>
+        <Button  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,4,10,0" VerticalAlignment="Top" Width="17" Padding="0">
+            <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowClose" Foreground="{DynamicResource MaterialDesignBackground}"/>
+        </Button>
+        <Button  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,4,32,0" VerticalAlignment="Top" Width="17" Padding="0">
+            <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowMaximize" Foreground="{DynamicResource MaterialDesignBackground}"/>
+        </Button>
+        <Button  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,4,54,0" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Width="17" Padding="0 3">
+            <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowMinimize" Foreground="{DynamicResource MaterialDesignBackground}"/>
+        </Button>
     </Grid>
 </Window>
