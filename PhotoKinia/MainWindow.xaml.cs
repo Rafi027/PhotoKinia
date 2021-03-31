@@ -38,11 +38,6 @@ namespace PhotoKinia
             form.ShowDialog();
         }
 
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -56,6 +51,19 @@ namespace PhotoKinia
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void grdTitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void grdTitleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Released && e.ClickCount == 2)
+                WindowState = WindowState.Maximized;
+            if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2)
+                WindowState = WindowState.Normal;
         }
     }
 }

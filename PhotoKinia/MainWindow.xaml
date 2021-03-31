@@ -18,8 +18,7 @@
         Height="500" Width="800" 
         ResizeMode="CanResizeWithGrip"
         WindowStyle="None" 
-        AllowsTransparency="True"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        AllowsTransparency="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -69,14 +68,16 @@
         <materialDesign:Card Padding="32" Margin="16,10,10,16" Grid.Column="1" Grid.Row="1">
             <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">My First Material Design App</TextBlock>
         </materialDesign:Card>
-        <Button x:Name="btnTitleClose"  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,10,10,0" VerticalAlignment="Top" Width="17" Padding="0" Click="btnExit_Click">
-            <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowClose" Foreground="{DynamicResource MaterialDesignBackground}"/>
-        </Button>
-        <Button x:Name="btnMaximize"  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,10,32,0" VerticalAlignment="Top" Width="17" Padding="0" Click="btnMaximize_Click">
-            <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowMaximize" Foreground="{DynamicResource MaterialDesignBackground}"/>
-        </Button>
-        <Button x:Name="btnMinimize" Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,10,54,0" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Width="17" Padding="0 3" Click="btnMinimize_Click">
-            <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowMinimize" Foreground="{DynamicResource MaterialDesignBackground}"/>
-        </Button>
+        <Grid x:Name="grdTitleBar" Background="Transparent" Grid.ColumnSpan="2" MouseLeftButtonDown="grdTitleBar_MouseLeftButtonDown" MouseDown="grdTitleBar_MouseDown">
+            <Button x:Name="btnTitleClose"  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,10,10,0" VerticalAlignment="Top" Width="17" Padding="0" Click="btnExit_Click">
+                <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowClose" Foreground="{DynamicResource MaterialDesignBackground}"/>
+            </Button>
+            <Button x:Name="btnMaximize"  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,10,32,0" VerticalAlignment="Top" Width="17" Padding="0" Click="btnMaximize_Click">
+                <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowMaximize" Foreground="{DynamicResource MaterialDesignBackground}"/>
+            </Button>
+            <Button x:Name="btnMinimize" Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,10,54,0" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Width="17" Padding="0 3" Click="btnMinimize_Click">
+                <materialDesign:PackIcon DockPanel.Dock="Left" Kind="WindowMinimize" Foreground="{DynamicResource MaterialDesignBackground}"/>
+            </Button>
+        </Grid>
     </Grid>
 </Window>
