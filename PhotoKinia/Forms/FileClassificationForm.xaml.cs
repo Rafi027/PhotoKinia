@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.Controls;
-using PhotoKinia.Modules.ImageSortingModule;
+﻿using PhotoKinia.Modules.ImageSortingModule;
 using System;
 using System.Collections.Generic;
 using System.IO;
