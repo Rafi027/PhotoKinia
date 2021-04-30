@@ -76,7 +76,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" Grid.RowSpan="3" Grid.ColumnSpan="2">Directories with images to sort:</TextBlock>
-                <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.Row="1" Grid.RowSpan="2">
+                <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.Row="1" Margin="0,0,10,0">
                     <TextBlock Text="C:\Document\Images" />
                     <TextBlock Text="D:\My old photos\holidays" />
                     <TextBlock Text="D:\Fooo" />
