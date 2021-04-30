@@ -54,7 +54,7 @@
                 </Button>
             </StackPanel>
 
-            <Border BorderBrush="Black" BorderThickness="0 1 0 0" Margin="10,10,0,-12" Grid.Row="2">
+            <Border BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="0 1 0 0" Margin="10,10,0,-12" Grid.Row="2">
                 <Button x:Name="btnExit" Grid.Row="2" Margin="0,9,0,30" Height="Auto" HorizontalContentAlignment="Left" Click="btnExit_Click">
                     <DockPanel >
                         <materialDesign:PackIcon DockPanel.Dock="Left" Kind="ExitToApp" Width="25" Height="25" Foreground="{DynamicResource MaterialDesignBackground}"/>
@@ -64,28 +64,41 @@
             </Border>
         </Grid>
 
-        <materialDesign:Card Padding="32" Margin="16,10,10,16" Grid.Column="1" Grid.Row="1">
+        <materialDesign:Card Padding="16" Margin="16,10,10,16" Grid.Column="1" Grid.Row="1">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="125"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition/>
-                    <RowDefinition Height="63"/>
                 </Grid.RowDefinitions>
-                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" Grid.RowSpan="3">Directories with images to sort:</TextBlock>
-                <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.Row="1">
+                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" Grid.RowSpan="3" Grid.ColumnSpan="2">Directories with images to sort:</TextBlock>
+                <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.Row="1" Grid.RowSpan="2">
                     <TextBlock Text="C:\Document\Images" />
                     <TextBlock Text="D:\My old photos\holidays" />
                     <TextBlock Text="D:\Fooo" />
                     <TextBlock Text="D:\Lat christmas" />
                 </ListBox>
-                <ComboBox Grid.Row="2" Style="{StaticResource MaterialDesignOutlinedComboBox}" ToolTip="Select file operating mode" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}" 
-                          materialDesign:HintAssist.Hint="File mode" ItemsSource="{Binding ShortStringList}" Margin="10,7,0,6" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="131">
-                    <ComboBoxItem>Copy</ComboBoxItem>
-                    <ComboBoxItem>Move</ComboBoxItem>
-                </ComboBox>
-                <Button Style="{StaticResource MaterialDesignFloatingActionButton}" ToolTip="Add directory" VerticalAlignment="Bottom" Width="50" Grid.Row="2" HorizontalAlignment="Right" Padding="0" Height="50" Margin="0,0,0,6">
-                    <materialDesign:PackIcon Kind="Plus" Width="50" Height="50"/>
-                </Button>
+                <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="1 0 0 0">
+                    <Grid>
+                        <Button Content="Add" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                        <Button Content="Remove" Grid.Column="1" Grid.Row="1" Margin="10,37,0,0" VerticalAlignment="Top"/>
+                        <ComboBox Grid.Row="2" Style="{StaticResource MaterialDesignOutlinedComboBox}" ToolTip="Select file operating mode" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}" 
+                                  materialDesign:HintAssist.Hint="File mode" ItemsSource="{Binding ShortStringList}" SelectedIndex="1" Margin="10,0,0,60" VerticalAlignment="Bottom" Height="50" Grid.Column="1">
+                            <ComboBoxItem>Copy</ComboBoxItem>
+                            <ComboBoxItem>Move</ComboBoxItem>
+                        </ComboBox>
+                        <Button Grid.Column="1" Grid.Row="2" Height="50" Margin="10,0,0,0" VerticalAlignment="Bottom">
+                            <DockPanel >
+                                <materialDesign:PackIcon DockPanel.Dock="Left" Kind="RunFast" Width="25" Height="25" Foreground="{DynamicResource MaterialDesignBackground}"/>
+                                <Label Content="Run" Foreground="{DynamicResource MaterialDesignBackground}" HorizontalAlignment="Center" Margin="10 0 0 0"/>
+                            </DockPanel>
+                        </Button>
+                    </Grid>
+                </Border>
+
             </Grid>
         </materialDesign:Card>
         <Grid x:Name="grdTitleBar" Background="Transparent" Grid.ColumnSpan="2" MouseLeftButtonDown="grdTitleBar_MouseLeftButtonDown" MouseDown="grdTitleBar_MouseDown">
