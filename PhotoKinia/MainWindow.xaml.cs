@@ -1,4 +1,5 @@
 ﻿using PhotoKinia.Forms;
+using PhotoKinia.Utils.FileOperations;
 using PhotoKinia.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace PhotoKinia
 
         public MainWindow()
         {
-            SortingViewModel = new SortingViewModel();
+            SortingViewModel = new SortingViewModel(new UIDirectoryBrowser());
             InitializeComponent();
         }
 
