@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.Controls;
-using PhotoKinia.Modules.ImageSortingModule;
+﻿using PhotoKinia.Modules.ImageSortingModule;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,7 +19,7 @@ namespace PhotoKinia.Forms
     /// <summary>
     /// Interaction logic for FileClassificationForm.xaml
     /// </summary>
-    public partial class FileClassificationForm : MetroWindow
+    public partial class FileClassificationForm : Window
     {
         public FileClassificationForm()
         {

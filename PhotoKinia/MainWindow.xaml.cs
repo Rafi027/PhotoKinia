@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.Controls;
-using PhotoKinia.Forms;
+﻿using PhotoKinia.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +19,7 @@ namespace PhotoKinia
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
@@ -36,6 +35,34 @@ namespace PhotoKinia
         {
             var form = new PngToJpgConverterForm();
             form.ShowDialog();
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void grdTitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void grdTitleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Released && e.ClickCount == 2)
+                WindowState = WindowState.Maximized;
+            if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2)
+                WindowState = WindowState.Normal;
         }
     }
 }
