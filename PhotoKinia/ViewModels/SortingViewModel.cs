@@ -1,4 +1,5 @@
 ﻿using PhotoKinia.Contracts;
+using PhotoKinia.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +17,8 @@ namespace PhotoKinia.ViewModels
 
         public ObservableCollection<string> InputDirectories { get; private set; }
         public string SelectedDirectory { get; set; }
+        public FileOperationMode FileMode { get; set; }
+
         public ICommand AddDirectory { get; private set; }
         public ICommand RemoveDirectory { get; private set; }
         public ICommand RunProcessing { get; private set; }

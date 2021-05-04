@@ -13,6 +13,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:propertyExtensions="clr-namespace:PhotoKinia.Extensions.PropertyExtensions"
         xmlns:local="clr-namespace:PhotoKinia"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:models="clr-namespace:PhotoKinia.Models"
         mc:Ignorable="d"
         MinHeight="500" MinWidth="800"
         Height="600" Width="800" 
@@ -20,6 +22,13 @@
         WindowStyle="None" 
         AllowsTransparency="True"
         Name="mainWindow">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="fileModesProvider" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:FileOperationMode"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -82,10 +91,8 @@
                     <Grid>
                         <Button Content="Add" Command="{Binding AddDirectory}" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalAlignment="Top"/>
                         <Button Content="Remove" Command="{Binding RemoveDirectory}" Grid.Column="1" Grid.Row="1" Margin="10,37,0,0" VerticalAlignment="Top"/>
-                        <ComboBox SelectedItem="{Binding FileMode}" Grid.Row="2" Style="{StaticResource MaterialDesignOutlinedComboBox}" ToolTip="Select file operating mode" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}" 
-                                  materialDesign:HintAssist.Hint="File mode" ItemsSource="{Binding ShortStringList}" SelectedIndex="1" Margin="10,0,0,60" VerticalAlignment="Bottom" Height="50" Grid.Column="1">
-                            <ComboBoxItem>Copy</ComboBoxItem>
-                            <ComboBoxItem>Move</ComboBoxItem>
+                        <ComboBox ItemsSource="{Binding Source={StaticResource fileModesProvider}}" SelectedItem="{Binding FileMode}" Grid.Row="2" Style="{StaticResource MaterialDesignOutlinedComboBox}" ToolTip="Select file operating mode" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}" 
+                                  materialDesign:HintAssist.Hint="File mode" SelectedIndex="1" Margin="10,0,0,60" VerticalAlignment="Bottom" Height="50" Grid.Column="1">
                         </ComboBox>
                         <Button Command="{Binding RunProcessing}" Grid.Column="1" Grid.Row="2" Height="50" Margin="10,0,0,0" VerticalAlignment="Bottom">
                             <DockPanel >
