@@ -77,22 +77,17 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" Grid.RowSpan="3" Grid.ColumnSpan="2">Directories with images to sort:</TextBlock>
-                <ListBox IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.Row="1" Margin="0,0,10,0">
-                    <TextBlock Text="C:\Document\Images" />
-                    <TextBlock Text="D:\My old photos\holidays" />
-                    <TextBlock Text="D:\Fooo" />
-                    <TextBlock Text="D:\Lat christmas" />
-                </ListBox>
+                <ListBox ItemsSource="{Binding InputDirectories}" IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.Row="1" Margin="0,0,10,0"/>
                 <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="1 0 0 0">
                     <Grid>
-                        <Button Content="Add" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalAlignment="Top"/>
-                        <Button Content="Remove" Grid.Column="1" Grid.Row="1" Margin="10,37,0,0" VerticalAlignment="Top"/>
-                        <ComboBox Grid.Row="2" Style="{StaticResource MaterialDesignOutlinedComboBox}" ToolTip="Select file operating mode" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}" 
+                        <Button Content="Add" Command="{Binding AddDirectory}" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                        <Button Content="Remove" Command="{Binding RemoveDirectory}" Grid.Column="1" Grid.Row="1" Margin="10,37,0,0" VerticalAlignment="Top"/>
+                        <ComboBox SelectedItem="{Binding FileMode}" Grid.Row="2" Style="{StaticResource MaterialDesignOutlinedComboBox}" ToolTip="Select file operating mode" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}" 
                                   materialDesign:HintAssist.Hint="File mode" ItemsSource="{Binding ShortStringList}" SelectedIndex="1" Margin="10,0,0,60" VerticalAlignment="Bottom" Height="50" Grid.Column="1">
                             <ComboBoxItem>Copy</ComboBoxItem>
                             <ComboBoxItem>Move</ComboBoxItem>
                         </ComboBox>
-                        <Button Grid.Column="1" Grid.Row="2" Height="50" Margin="10,0,0,0" VerticalAlignment="Bottom">
+                        <Button Command="{Binding RunProcessing}" Grid.Column="1" Grid.Row="2" Height="50" Margin="10,0,0,0" VerticalAlignment="Bottom">
                             <DockPanel >
                                 <materialDesign:PackIcon DockPanel.Dock="Left" Kind="RunFast" Width="25" Height="25" Foreground="{DynamicResource MaterialDesignBackground}"/>
                                 <Label Content="Run" Foreground="{DynamicResource MaterialDesignBackground}" HorizontalAlignment="Center" Margin="10 0 0 0"/>

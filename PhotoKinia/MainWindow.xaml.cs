@@ -26,8 +26,8 @@ namespace PhotoKinia
 
         public MainWindow()
         {
-            InitializeComponent();
             SortingViewModel = new SortingViewModel();
+            InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
