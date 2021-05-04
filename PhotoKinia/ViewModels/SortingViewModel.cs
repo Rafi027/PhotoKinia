@@ -15,6 +15,7 @@ namespace PhotoKinia.ViewModels
         private readonly IDirectorySelector directorySelector;
 
         public ObservableCollection<string> InputDirectories { get; private set; }
+        public string SelectedDirectory { get; set; }
         public ICommand AddDirectory { get; private set; }
         public ICommand RemoveDirectory { get; private set; }
         public ICommand RunProcessing { get; private set; }
@@ -36,6 +37,12 @@ namespace PhotoKinia.ViewModels
                     return;
                 
                 InputDirectories.Add(selectedPath);
+            });
+
+            RemoveDirectory = new SimpleCommand((o) =>
+            {
+                if(InputDirectories.Contains(SelectedDirectory))
+                    InputDirectories.Remove(SelectedDirectory);
             });
         }
     }

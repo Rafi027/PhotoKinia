@@ -77,7 +77,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" Grid.RowSpan="3" Grid.ColumnSpan="2">Directories with images to sort:</TextBlock>
-                <ListBox ItemsSource="{Binding InputDirectories}" IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.Row="1" Margin="0,0,10,0"/>
+                <ListBox ItemsSource="{Binding InputDirectories}" SelectedItem="{Binding SelectedDirectory}" IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.Row="1" Margin="0,0,10,0"/>
                 <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="1 0 0 0">
                     <Grid>
                         <Button Content="Add" Command="{Binding AddDirectory}" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalAlignment="Top"/>
