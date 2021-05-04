@@ -1,4 +1,5 @@
 ﻿using PhotoKinia.Forms;
+using PhotoKinia.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,12 @@ namespace PhotoKinia
     /// </summary>
     public partial class MainWindow : Window
     {
+        public SortingViewModel SortingViewModel { get; private set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            SortingViewModel = new SortingViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

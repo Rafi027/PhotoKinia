@@ -18,7 +18,8 @@
         Height="600" Width="800" 
         ResizeMode="CanResizeWithGrip"
         WindowStyle="None" 
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        Name="mainWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -66,7 +67,7 @@
         </Grid>
 
         <materialDesign:Card Padding="16" Margin="16,10,10,16" Grid.Column="1" Grid.Row="1">
-            <Grid>
+            <Grid DataContext="{Binding SortingViewModel, ElementName=mainWindow}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="125"/>
