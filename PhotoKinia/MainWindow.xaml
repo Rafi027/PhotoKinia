@@ -79,7 +79,7 @@
             <Grid DataContext="{Binding SortingViewModel, ElementName=mainWindow}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -97,7 +97,7 @@
                         <Button Command="{Binding RunProcessing}" Grid.Column="1" Grid.Row="2" Height="50" Margin="10,0,0,0" VerticalAlignment="Bottom">
                             <DockPanel >
                                 <materialDesign:PackIcon DockPanel.Dock="Left" Kind="RunFast" Width="25" Height="25" Foreground="{DynamicResource MaterialDesignBackground}"/>
-                                <Label Content="Run" Foreground="{DynamicResource MaterialDesignBackground}" HorizontalAlignment="Center" Margin="10 0 0 0"/>
+                                <Label Content="Proceed" Foreground="{DynamicResource MaterialDesignBackground}" HorizontalAlignment="Center" Margin="10 0 0 0"/>
                             </DockPanel>
                         </Button>
                     </Grid>
