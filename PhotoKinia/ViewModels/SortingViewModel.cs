@@ -1,5 +1,9 @@
-﻿using PhotoKinia.Contracts;
+﻿using ImageSortingModule.Classification.EqualityCheck;
+using ImageSortingModule.FileListGeneration;
+using ImageSortingModule.Files;
+using PhotoKinia.Contracts;
 using PhotoKinia.Models;
+using PhotoKinia.Modules.ImageSortingModule;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -47,6 +51,30 @@ namespace PhotoKinia.ViewModels
                 if(InputDirectories.Contains(SelectedDirectory))
                     InputDirectories.Remove(SelectedDirectory);
             });
+
+            RunProcessing = new SimpleCommand((o) =>
+            {
+                var sorter = new ImageSorter(
+                    new SubDirectoriesSearchWithInputList(InputDirectories.ToList()),
+                    new DateTimeClassification(new MetadataCreationDateReader()),
+                    new MD5Check(),
+                    GetFileOperatingMode());
+
+                sorter.Sort(@"C:\Users\Rafi\Documents\SortingTest\Output");
+            },
+            new Predicate<object>((o) => InputDirectories.Count > 0));
+        }
+
+        private IFileOperation GetFileOperatingMode()
+        {
+            switch (FileMode)
+            {
+                case FileOperationMode.Copy:
+                    return new FileCopyOperation();
+                case FileOperationMode.Move:
+                    return new FileMoveOperation();
+            }
+            throw new ArgumentException("Cannot select file operation mode");
         }
     }
 }
