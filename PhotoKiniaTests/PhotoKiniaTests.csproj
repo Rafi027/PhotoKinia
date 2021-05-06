@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\DesktopApp\ViewModels\SortingViewModelTests.cs" />
     <Compile Include="Modules\ImageSortingModule\ImageSorterTestFixture.cs" />
     <Compile Include="Modules\ImageSortingModule\MonthToStringTestFixture.cs" />
     <Compile Include="Modules\FileListGeneratorModule\PathReductionTestFixture.cs" />
