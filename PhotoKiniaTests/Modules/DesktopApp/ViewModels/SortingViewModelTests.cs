@@ -32,5 +32,22 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
             Assert.AreEqual(TestPath2, ViewModel.InputDirectories[1]);
             Assert.AreEqual(TestPath3, ViewModel.InputDirectories[2]);
         }
+
+        [TestMethod]
+        public void CheckIfUserCanAddTheSameDirectory()
+        {
+            var directorySelectorMock = new Mock<IDirectorySelector>();
+            directorySelectorMock.SetupSequence(d => d.SelectDirectory())
+                .Returns(TestPath1)
+                .Returns(TestPath1)
+                .Returns(TestPath1);
+
+            var ViewModel = new SortingViewModel(directorySelectorMock.Object);
+
+
+
+            Assert.AreEqual(1, ViewModel.InputDirectories.Count);
+            Assert.AreEqual(TestPath1, ViewModel.InputDirectories[0]);
+        }
     }
 }
