@@ -81,8 +81,6 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         public void CheckIfUserCanRunProcessingWithoutAnyDirectories()
         {
             var directorySelectorMock = new Mock<IDirectorySelector>();
-            directorySelectorMock.SetupSequence(d => d.SelectDirectory())
-                .Returns(TestPath1);
 
             var ViewModel = new SortingViewModel(directorySelectorMock.Object);
             var canExecuteProcessing = ViewModel.RunProcessing.CanExecute(null);
