@@ -52,5 +52,28 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
             Assert.AreEqual(1, ViewModel.InputDirectories.Count);
             Assert.AreEqual(TestPath1, ViewModel.InputDirectories[0]);
         }
+
+        [TestMethod]
+        public void CheckIfUserCanRemoveDirectory()
+        {
+            var directorySelectorMock = new Mock<IDirectorySelector>();
+            directorySelectorMock.SetupSequence(d => d.SelectDirectory())
+                .Returns(TestPath1)
+                .Returns(TestPath2)
+                .Returns(TestPath3);
+
+            var ViewModel = new SortingViewModel(directorySelectorMock.Object);
+            ViewModel.AddDirectory.Execute(null);
+            ViewModel.AddDirectory.Execute(null);
+            ViewModel.AddDirectory.Execute(null);
+
+            ViewModel.SelectedDirectory = ViewModel.InputDirectories[1];
+
+            ViewModel.RemoveDirectory.Execute(null);
+
+            Assert.AreEqual(2, ViewModel.InputDirectories.Count);
+            Assert.AreEqual(TestPath1, ViewModel.InputDirectories[0]);
+            Assert.AreEqual(TestPath3, ViewModel.InputDirectories[1]);
+        }
     }
 }
