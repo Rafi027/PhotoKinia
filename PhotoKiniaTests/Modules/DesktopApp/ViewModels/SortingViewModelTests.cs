@@ -12,6 +12,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         private const string TestPath1 = @"C:\images1";
         private const string TestPath2 = @"C:\images2";
         private const string TestPath3 = @"C:\images3";
+        private const string TestOutputPath = @"C:\ImagesLibrary";
 
         [TestMethod]
         public void TestAddDirectoryMethod()
@@ -93,10 +94,12 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         {
             var directorySelectorMock = new Mock<IDirectorySelector>();
             directorySelectorMock.SetupSequence(d => d.SelectDirectory())
-                .Returns(TestPath1);
+                .Returns(TestPath1)
+                .Returns(TestOutputPath);
 
             var ViewModel = new SortingViewModel(directorySelectorMock.Object);
             ViewModel.AddDirectory.Execute(null);
+            ViewModel.SelectOutputDirectory.Execute(null);
             var canExecuteProcessing = ViewModel.RunProcessing.CanExecute(null);
             Assert.IsTrue(canExecuteProcessing);
         }
