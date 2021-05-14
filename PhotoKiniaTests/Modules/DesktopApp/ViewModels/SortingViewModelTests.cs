@@ -43,6 +43,9 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath1);
 
             var ViewModel = new SortingViewModel(directorySelectorMock.Object);
+            ViewModel.AddDirectory.Execute(null);
+            ViewModel.AddDirectory.Execute(null);
+            ViewModel.AddDirectory.Execute(null);
 
 
 
