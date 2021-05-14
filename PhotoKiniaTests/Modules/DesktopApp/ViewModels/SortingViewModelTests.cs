@@ -75,5 +75,30 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
             Assert.AreEqual(TestPath1, ViewModel.InputDirectories[0]);
             Assert.AreEqual(TestPath3, ViewModel.InputDirectories[1]);
         }
+
+        [TestMethod]
+        public void CheckIfUserCanRunProcessingWithoutAnyDirectories()
+        {
+            var directorySelectorMock = new Mock<IDirectorySelector>();
+            directorySelectorMock.SetupSequence(d => d.SelectDirectory())
+                .Returns(TestPath1);
+
+            var ViewModel = new SortingViewModel(directorySelectorMock.Object);
+            var canExecuteProcessing = ViewModel.RunProcessing.CanExecute(null);
+            Assert.IsFalse(canExecuteProcessing);
+        }
+
+        [TestMethod]
+        public void CheckIfUserCanRunProcessingWithDirectories()
+        {
+            var directorySelectorMock = new Mock<IDirectorySelector>();
+            directorySelectorMock.SetupSequence(d => d.SelectDirectory())
+                .Returns(TestPath1);
+
+            var ViewModel = new SortingViewModel(directorySelectorMock.Object);
+            ViewModel.AddDirectory.Execute(null);
+            var canExecuteProcessing = ViewModel.RunProcessing.CanExecute(null);
+            Assert.IsTrue(canExecuteProcessing);
+        }
     }
 }
