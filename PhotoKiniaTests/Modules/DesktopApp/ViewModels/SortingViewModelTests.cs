@@ -101,5 +101,18 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
             var canExecuteProcessing = ViewModel.RunProcessing.CanExecute(null);
             Assert.IsTrue(canExecuteProcessing);
         }
+
+        [TestMethod]
+        public void RunProcessing()
+        {
+            throw new NotImplementedException();
+            var directorySelectorMock = new Mock<IDirectorySelector>();
+            directorySelectorMock.SetupSequence(d => d.SelectDirectory())
+                .Returns(TestPath1);
+
+            var ViewModel = new SortingViewModel(directorySelectorMock.Object);
+            ViewModel.AddDirectory.Execute(null);
+            //ViewModel.RunProcessing.Execute(null);
+        }
     }
 }

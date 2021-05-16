@@ -22,7 +22,13 @@ namespace PhotoKinia.ViewModels
         public ObservableCollection<string> InputDirectories { get; private set; }
         public string SelectedDirectory { get; set; }
         public FileOperationMode FileMode { get; set; }
-        public string OutputDirectory { get; set; }
+        private string outputDirectory;
+
+        public string OutputDirectory
+        {
+            get { return outputDirectory; }
+            set { outputDirectory = value; RaisePropertyChanged(nameof(OutputDirectory)); }
+        }
 
         public ICommand AddDirectory { get; private set; }
         public ICommand RemoveDirectory { get; private set; }
