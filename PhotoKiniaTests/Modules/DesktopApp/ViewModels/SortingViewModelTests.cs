@@ -110,14 +110,20 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         }
 
         [TestMethod]
-        public void RunProcessing()
+        public void CheckIfProcessingRunIsPossible()
         {
+            int calls = 0;
+            imageSortingMock.Setup(i => i.Sort(It.IsAny<string>()))
+                .Callback(() => calls++);
+
             directorySelectorMock.SetupSequence(d => d.SelectDirectory())
                 .Returns(TestPath1);
+
 
             var ViewModel = new SortingViewModel(imageSortingMock.Object, directorySelectorMock.Object);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.RunProcessing.Execute(null);
+            Assert.AreEqual(1, calls);
         }
     }
 }
