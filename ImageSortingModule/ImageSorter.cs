@@ -1,4 +1,5 @@
-﻿using ImageSortingModule.Classification.EqualityCheck;
+﻿using ImageSortingModule;
+using ImageSortingModule.Classification.EqualityCheck;
 using ImageSortingModule.Classification.RenameMethod;
 using ImageSortingModule.Files;
 using NLog;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PhotoKinia.Modules.ImageSortingModule
 {
-    public class ImageSorter
+    public class ImageSorter : IImageSorter
     {
         private static Logger Logger = LogManager.GetCurrentClassLogger();
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ImageSortingModule;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PhotoKinia.Contracts;
 using PhotoKinia.ViewModels;
@@ -105,14 +106,14 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         [TestMethod]
         public void RunProcessing()
         {
-            throw new NotImplementedException();
+            var imageSorting = new Mock<IImageSorter>();
             var directorySelectorMock = new Mock<IDirectorySelector>();
             directorySelectorMock.SetupSequence(d => d.SelectDirectory())
                 .Returns(TestPath1);
 
             var ViewModel = new SortingViewModel(directorySelectorMock.Object);
             ViewModel.AddDirectory.Execute(null);
-            //ViewModel.RunProcessing.Execute(null);
+            ViewModel.RunProcessing.Execute(null);
         }
     }
 }
