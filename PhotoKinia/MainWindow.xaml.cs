@@ -1,4 +1,7 @@
-﻿using PhotoKinia.Forms;
+﻿using ImageSortingModule.Classification.EqualityCheck;
+using ImageSortingModule.FileListGeneration;
+using PhotoKinia.Forms;
+using PhotoKinia.Modules.ImageSortingModule;
 using PhotoKinia.Utils.FileOperations;
 using PhotoKinia.ViewModels;
 using System;
@@ -27,7 +30,7 @@ namespace PhotoKinia
 
         public MainWindow()
         {
-            SortingViewModel = new SortingViewModel(new UIDirectoryBrowser());
+            SortingViewModel = new SortingViewModel(null,  new UIDirectoryBrowser());
             InitializeComponent();
         }
 

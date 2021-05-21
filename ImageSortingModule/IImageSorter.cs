@@ -6,6 +6,6 @@ namespace ImageSortingModule
 {
     public interface IImageSorter
     {
-        void Sort(string outputDirectory);
+        void Sort(IEnumerable<string> imageFiles, string outputDirectory);
     }
 }

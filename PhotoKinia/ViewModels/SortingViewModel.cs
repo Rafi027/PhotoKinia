@@ -1,4 +1,5 @@
-﻿using ImageSortingModule.Classification.EqualityCheck;
+﻿using ImageSortingModule;
+using ImageSortingModule.Classification.EqualityCheck;
 using ImageSortingModule.FileListGeneration;
 using ImageSortingModule.Files;
 using PhotoKinia.Contracts;
@@ -17,6 +18,7 @@ namespace PhotoKinia.ViewModels
 {
     public class SortingViewModel : ViewModelBase
     {
+        private readonly IImageSorter sorter;
         private readonly IDirectorySelector directorySelector;
 
         public ObservableCollection<string> InputDirectories { get; private set; }
@@ -35,8 +37,9 @@ namespace PhotoKinia.ViewModels
         public ICommand RunProcessing { get; private set; }
         public ICommand SelectOutputDirectory { get; set; }
 
-        public SortingViewModel(IDirectorySelector directorySelector)
+        public SortingViewModel(ImageSortingModule.IImageSorter imageSorter, IDirectorySelector directorySelector)
         {
+            sorter = imageSorter;
             this.directorySelector = directorySelector;
             Initialize();
         }
@@ -62,13 +65,13 @@ namespace PhotoKinia.ViewModels
 
             RunProcessing = new SimpleCommand((o) =>
             {
+                var inputData = new SubDirectoriesSearchWithInputList(InputDirectories.ToList()).GetFiles();
                 var sorter = new ImageSorter(
-                    new SubDirectoriesSearchWithInputList(InputDirectories.ToList()),
                     new DateTimeClassification(new MetadataCreationDateReader()),
                     new MD5Check(),
                     GetFileOperatingMode());
 
-                sorter.Sort(@"C:\Users\Rafi\Documents\SortingTest\Output");
+                sorter.Sort(inputData, @"C:\Users\Rafi\Documents\SortingTest\Output");
             },
             new Predicate<object>((o) => InputDirectories.Count > 0 && !string.IsNullOrEmpty(OutputDirectory)));
 

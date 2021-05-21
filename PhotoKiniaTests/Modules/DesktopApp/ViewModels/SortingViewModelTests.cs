@@ -4,6 +4,8 @@ using Moq;
 using PhotoKinia.Contracts;
 using PhotoKinia.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
 {
@@ -110,10 +112,10 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         }
 
         [TestMethod]
-        public void CheckIfProcessingRunIsPossible()
+        public void CheckIfSortingWasCalledAfterClickingRunProcessingButton()
         {
             int calls = 0;
-            imageSortingMock.Setup(i => i.Sort(It.IsAny<string>()))
+            imageSortingMock.Setup(i => i.Sort(It.Is<IEnumerable<string>>(input => input.Count() > 0), It.IsAny<string>()))
                 .Callback(() => calls++);
 
             directorySelectorMock.SetupSequence(d => d.SelectDirectory())
