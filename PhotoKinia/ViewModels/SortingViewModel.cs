@@ -66,12 +66,12 @@ namespace PhotoKinia.ViewModels
             RunProcessing = new SimpleCommand((o) =>
             {
                 var inputData = new SubDirectoriesSearchWithInputList(InputDirectories.ToList()).GetFiles();
-                var sorter = new ImageSorter(
-                    new DateTimeClassification(new MetadataCreationDateReader()),
-                    new MD5Check(),
-                    GetFileOperatingMode());
+                //var sorter = new ImageSorter(
+                //    new DateTimeClassification(new MetadataCreationDateReader()),
+                //    new MD5Check(),
+                //    GetFileOperatingMode());
 
-                sorter.Sort(inputData, @"C:\Users\Rafi\Documents\SortingTest\Output");
+                sorter.Sort(new List<string>(), @"C:\Users\Rafi\Documents\SortingTest\Output");
             },
             new Predicate<object>((o) => InputDirectories.Count > 0 && !string.IsNullOrEmpty(OutputDirectory)));
 
