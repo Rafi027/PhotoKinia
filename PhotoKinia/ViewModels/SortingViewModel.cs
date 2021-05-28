@@ -65,7 +65,7 @@ namespace PhotoKinia.ViewModels
 
             RunProcessing = new SimpleCommand((o) =>
             {
-                var inputData = new SubDirectoriesSearchWithInputList(InputDirectories.ToList()).GetFiles();
+                //var inputData = new SubDirectoriesSearchBase().GetFiles(InputDirectories.ToList());
                 //var sorter = new ImageSorter(
                 //    new DateTimeClassification(new MetadataCreationDateReader()),
                 //    new MD5Check(),

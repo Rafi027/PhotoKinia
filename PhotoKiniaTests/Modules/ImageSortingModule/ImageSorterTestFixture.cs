@@ -14,7 +14,6 @@ namespace PhotoKiniaTests.Modules.ImageSortingModule
         [TestMethod]
         public void ImageClassificationByDate()
         {
-            var fileProviderMock = new Mock<IFileListGenerator>();
             var mockFilesDictionary = new Dictionary<string, string>();
             mockFilesDictionary.Add(@"D:\Pentax\dcim\001.jpg", @"C:\PhotoLibrary");
 
@@ -34,26 +33,17 @@ namespace PhotoKiniaTests.Modules.ImageSortingModule
             mockResults.Add(@"D:\Olympus\dcim\005.jpg", @"2019\2. Luty\1\005.jpg");
             mockResults.Add(@"D:\Olympus\dcim\005.dng", @"2019\2. Luty\1\005.dng");
 
-
-
             var files = new List<string>(mockFiles.Keys).ToArray();
-            fileProviderMock.Setup(mock => mock.GetFiles()).Returns(mockFiles.Keys.ToList());
-            var fileProvider = fileProviderMock.Object;
-
             var dateReader = new Mock<ICreationDateReader>();
             foreach (var file in mockFiles.Keys)
                 dateReader.Setup(reader => reader.Read(file)).Returns(mockFiles[file]);
 
 
             IImageClassificationMethod classificationMethod = new DateTimeClassification(dateReader.Object);
-
-
             foreach (var imagePath in mockFiles.Keys)
             {
-
                 var result = classificationMethod.GetClassifiedFilePath(imagePath);
                 Assert.IsTrue(result.Success);
-
                 Assert.AreEqual(mockResults[imagePath], result.ClassifiedPath.RelativePath);
             }
         }

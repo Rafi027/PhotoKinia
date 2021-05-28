@@ -9,24 +9,23 @@ using System.Text;
 
 namespace ImageSortingModule.FileListGeneration
 {
-    public abstract class SubDirectoriesSearchBase : IFileListGenerator
+    public class SubDirectoriesSearchBase : IFileListGenerator
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public List<string> GetFiles()
+        public List<string> GetFiles(IEnumerable<string> inputDirectories)
         {
-            var directories = GetDirectoriesToSearch();
-            if(directories == null)
+            if(inputDirectories == null)
             {
                 Logger.Error("Cannot find get list of directories to search.");
                 return null;
             }
 
             var reductor = new PathReductor();
-            directories = reductor.Reduce(directories);
+            inputDirectories = reductor.Reduce(inputDirectories);
 
             var result = new List<string>();
-            foreach (var directory in directories)
+            foreach (var directory in inputDirectories)
             {
                 if (directory.StartsWith("#"))
                     continue;
@@ -70,7 +69,5 @@ namespace ImageSortingModule.FileListGeneration
             return directoriesToScan.Count == 0 ? Bounce<List<string>, Stack<string>, List<string>>.End(files) :
                 Bounce<List<string>, Stack<string>, List<string>>.Continue(files, directoriesToScan);
         }
-
-        protected abstract List<string> GetDirectoriesToSearch();
     }
 }

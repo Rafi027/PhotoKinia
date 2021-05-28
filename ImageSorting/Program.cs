@@ -14,7 +14,7 @@ namespace ImageSorting
         {
             NLog.LogManager.GetCurrentClassLogger().Info("Session started");
             var sort = new ImageSorter(new DateTimeClassification(new MetadataCreationDateReader()), new MD5Check(), new FileMoveOperation());
-            sort.Sort(new SubDirectoriesTextFileSource(args[0]).GetFiles(), args[1]);
+            sort.Sort(new SubDirectoriesSearchBase().GetFiles(File.ReadAllLines(args[0])), args[1]);
         }
     }
 }
