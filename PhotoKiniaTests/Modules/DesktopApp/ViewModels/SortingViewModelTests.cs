@@ -2,9 +2,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PhotoKinia.Contracts;
+using PhotoKinia.Modules.ImageSortingModule;
 using PhotoKinia.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
@@ -19,12 +21,16 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         
         private Mock<IImageSorter> imageSortingMock;
         private Mock<IDirectorySelector> directorySelectorMock;
+        private Mock<IFileListGenerator> subDirectoriesSearchMock;
 
         [TestInitialize]
         public void Init()
         {
             imageSortingMock = new Mock<IImageSorter>();
             directorySelectorMock = new Mock<IDirectorySelector>();
+            subDirectoriesSearchMock = new Mock<IFileListGenerator>();
+            subDirectoriesSearchMock.Setup(s => s.GetFiles(It.Is<IEnumerable<string>>(input => input.Count() > 0)))
+                .Returns(new List<string>() { Path.Combine(TestPath1, "img1.jpg"), Path.Combine(TestPath2, "img2.jpg")});
         }
 
         [TestMethod]
@@ -35,7 +41,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath2)
                 .Returns(TestPath3);
 
-            var ViewModel = new SortingViewModel(imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
@@ -54,7 +60,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath1)
                 .Returns(TestPath1);
 
-            var ViewModel = new SortingViewModel(imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
@@ -73,7 +79,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath2)
                 .Returns(TestPath3);
 
-            var ViewModel = new SortingViewModel(imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
@@ -92,7 +98,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         {
             var directorySelectorMock = new Mock<IDirectorySelector>();
 
-            var ViewModel = new SortingViewModel(imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
             var canExecuteProcessing = ViewModel.RunProcessing.CanExecute(null);
             Assert.IsFalse(canExecuteProcessing);
         }
@@ -104,7 +110,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath1)
                 .Returns(TestOutputPath);
 
-            var ViewModel = new SortingViewModel(imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.SelectOutputDirectory.Execute(null);
             var canExecuteProcessing = ViewModel.RunProcessing.CanExecute(null);
@@ -115,14 +121,15 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         public void CheckIfSortingWasCalledAfterClickingRunProcessingButton()
         {
             int calls = 0;
-            imageSortingMock.Setup(i => i.Sort(It.Is<IEnumerable<string>>(input => input.Count() > 0), It.IsAny<string>()))
+            imageSortingMock.Setup(i => i.Sort(It.Is<IEnumerable<string>>(input => input.Count() > 0), It.Is<string>(output => !string.IsNullOrEmpty(output))))
                 .Callback(() => calls++);
 
             directorySelectorMock.SetupSequence(d => d.SelectDirectory())
                 .Returns(TestPath1);
 
 
-            var ViewModel = new SortingViewModel(imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
+            ViewModel.OutputDirectory = TestOutputPath;
             ViewModel.AddDirectory.Execute(null);
             ViewModel.RunProcessing.Execute(null);
             Assert.AreEqual(1, calls);

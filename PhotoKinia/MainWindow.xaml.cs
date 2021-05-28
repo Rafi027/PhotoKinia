@@ -30,7 +30,14 @@ namespace PhotoKinia
 
         public MainWindow()
         {
-            SortingViewModel = new SortingViewModel(null,  new UIDirectoryBrowser());
+            SortingViewModel = new SortingViewModel(
+                new SubDirectoriesSearch(), 
+                new ImageSorter(
+                    new DateTimeClassification(
+                        new MetadataCreationDateReader()), 
+                    new MD5Check(), 
+                    null),  
+                new UIDirectoryBrowser());
             InitializeComponent();
         }
 

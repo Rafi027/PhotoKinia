@@ -18,6 +18,7 @@ namespace PhotoKinia.ViewModels
 {
     public class SortingViewModel : ViewModelBase
     {
+        private readonly IFileListGenerator fileListGenerator;
         private readonly IImageSorter sorter;
         private readonly IDirectorySelector directorySelector;
 
@@ -37,8 +38,9 @@ namespace PhotoKinia.ViewModels
         public ICommand RunProcessing { get; private set; }
         public ICommand SelectOutputDirectory { get; set; }
 
-        public SortingViewModel(ImageSortingModule.IImageSorter imageSorter, IDirectorySelector directorySelector)
+        public SortingViewModel(IFileListGenerator fileListGenerator, ImageSortingModule.IImageSorter imageSorter, IDirectorySelector directorySelector)
         {
+            this.fileListGenerator = fileListGenerator;
             sorter = imageSorter;
             this.directorySelector = directorySelector;
             Initialize();
@@ -65,13 +67,7 @@ namespace PhotoKinia.ViewModels
 
             RunProcessing = new SimpleCommand((o) =>
             {
-                //var inputData = new SubDirectoriesSearchBase().GetFiles(InputDirectories.ToList());
-                //var sorter = new ImageSorter(
-                //    new DateTimeClassification(new MetadataCreationDateReader()),
-                //    new MD5Check(),
-                //    GetFileOperatingMode());
-
-                sorter.Sort(new List<string>(), @"C:\Users\Rafi\Documents\SortingTest\Output");
+                sorter.Sort(fileListGenerator.GetFiles(InputDirectories), OutputDirectory);
             },
             new Predicate<object>((o) => InputDirectories.Count > 0 && !string.IsNullOrEmpty(OutputDirectory)));
 
