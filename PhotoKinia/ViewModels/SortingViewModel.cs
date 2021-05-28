@@ -67,7 +67,7 @@ namespace PhotoKinia.ViewModels
 
             RunProcessing = new SimpleCommand((o) =>
             {
-                sorter.Sort(fileListGenerator.GetFiles(InputDirectories), OutputDirectory);
+                sorter.Sort(fileListGenerator.GetFiles(InputDirectories), OutputDirectory, GetFileOperatingMode());
             },
             new Predicate<object>((o) => InputDirectories.Count > 0 && !string.IsNullOrEmpty(OutputDirectory)));
 

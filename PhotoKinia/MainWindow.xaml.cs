@@ -35,8 +35,7 @@ namespace PhotoKinia
                 new ImageSorter(
                     new DateTimeClassification(
                         new MetadataCreationDateReader()), 
-                    new MD5Check(), 
-                    null),  
+                    new MD5Check()),  
                 new UIDirectoryBrowser());
             InitializeComponent();
         }

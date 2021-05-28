@@ -1,4 +1,5 @@
 ﻿using ImageSortingModule;
+using ImageSortingModule.Files;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PhotoKinia.Contracts;
@@ -121,7 +122,11 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         public void CheckIfSortingWasCalledAfterClickingRunProcessingButton()
         {
             int calls = 0;
-            imageSortingMock.Setup(i => i.Sort(It.Is<IEnumerable<string>>(input => input.Count() > 0), It.Is<string>(output => !string.IsNullOrEmpty(output))))
+            imageSortingMock.Setup(
+                i => i.Sort(
+                    It.Is<IEnumerable<string>>(input => input.Count() > 0), 
+                    It.Is<string>(output => !string.IsNullOrEmpty(output)),
+                    It.Is<IFileOperation>(operation => operation != null)))
                 .Callback(() => calls++);
 
             directorySelectorMock.SetupSequence(d => d.SelectDirectory())

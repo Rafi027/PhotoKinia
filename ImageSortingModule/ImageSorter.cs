@@ -18,17 +18,15 @@ namespace PhotoKinia.Modules.ImageSortingModule
 
         private readonly IImageClassificationMethod imageClassification;
         private readonly IImageEqualityCheck imageEquality;
-        private readonly IFileOperation fileOperation;
 
-        public ImageSorter(IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality, IFileOperation fileOperation)
+        public ImageSorter(IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality)
         {
             Logger.Trace("ImageSorter(IFileListGenerator fileProvider, IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality)");
             this.imageClassification = imageClassification;
             this.imageEquality = imageEquality;
-            this.fileOperation = fileOperation;
         }
 
-        public void Sort(IEnumerable<string> imageFiles, string outputDirectory)
+        public void Sort(IEnumerable<string> imageFiles, string outputDirectory, IFileOperation fileOperation)
         {
             Logger.Trace("void Sort({outputDirectory})", outputDirectory);
             var totalNumberOfFiles = imageFiles.Count();
