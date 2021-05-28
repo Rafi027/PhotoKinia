@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ImageSortingModule.FileListGeneration
 {
-    public class SubDirectoriesSearchBase : IFileListGenerator
+    public class SubDirectoriesSearch : IFileListGenerator
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
