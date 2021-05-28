@@ -139,5 +139,51 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
             ViewModel.RunProcessing.Execute(null);
             Assert.AreEqual(1, calls);
         }
+
+        [TestMethod]
+        public void CheckFileCopyModeProcessingSelection()
+        {
+            int calls = 0;
+            imageSortingMock.Setup(
+                i => i.Sort(
+                    It.Is<IEnumerable<string>>(input => input.Count() > 0),
+                    It.Is<string>(output => !string.IsNullOrEmpty(output)),
+                    It.Is<IFileOperation>(operation => operation is FileCopyOperation)))
+                .Callback(() => calls++);
+
+            directorySelectorMock.SetupSequence(d => d.SelectDirectory())
+                .Returns(TestPath1);
+
+
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
+            ViewModel.OutputDirectory = TestOutputPath;
+            ViewModel.FileMode = PhotoKinia.Models.FileOperationMode.Copy;
+            ViewModel.AddDirectory.Execute(null);
+            ViewModel.RunProcessing.Execute(null);
+            Assert.AreEqual(1, calls);
+        }
+
+        [TestMethod]
+        public void CheckFileMoveModeProcessingSelection()
+        {
+            int calls = 0;
+            imageSortingMock.Setup(
+                i => i.Sort(
+                    It.Is<IEnumerable<string>>(input => input.Count() > 0),
+                    It.Is<string>(output => !string.IsNullOrEmpty(output)),
+                    It.Is<IFileOperation>(operation => operation is FileMoveOperation)))
+                .Callback(() => calls++);
+
+            directorySelectorMock.SetupSequence(d => d.SelectDirectory())
+                .Returns(TestPath1);
+
+
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
+            ViewModel.OutputDirectory = TestOutputPath;
+            ViewModel.FileMode = PhotoKinia.Models.FileOperationMode.Move;
+            ViewModel.AddDirectory.Execute(null);
+            ViewModel.RunProcessing.Execute(null);
+            Assert.AreEqual(1, calls);
+        }
     }
 }
