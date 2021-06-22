@@ -75,40 +75,58 @@
             </Border>
         </Grid>
 
-        <materialDesign:Card Padding="16" Margin="16,10,10,16" Grid.Column="1" Grid.Row="1">
-            <Grid DataContext="{Binding SortingViewModel, ElementName=mainWindow}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="70"/>
-                    <ColumnDefinition Width="140"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="59"/>
-                </Grid.RowDefinitions>
-                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" Grid.RowSpan="3" Grid.ColumnSpan="3">Directories with images to sort:</TextBlock>
-                <ListBox ItemsSource="{Binding InputDirectories}" SelectedItem="{Binding SelectedDirectory}" IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.Row="1" Margin="0,0,10,28" Grid.ColumnSpan="2"/>
-                <Button Command="{Binding SelectOutputDirectory}" Content="..." Grid.Column="1" Grid.Row="2" Height="Auto" Margin="10,10,10,0"/>
-
-                <TextBox Grid.Column="0" Grid.Row="2" Text="{Binding OutputDirectory}" materialDesign:HintAssist.Hint="A place to store photos" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10,10,0"/>
-                <Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="1 0 0 0">
-                    <Grid>
-                        <Button Content="Add" Command="{Binding AddDirectory}" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalAlignment="Top"/>
-                        <Button Content="Remove" Command="{Binding RemoveDirectory}" Grid.Column="1" Grid.Row="1" Margin="10,37,0,0" VerticalAlignment="Top"/>
-                        <ComboBox ItemsSource="{Binding Source={StaticResource fileModesProvider}}" SelectedItem="{Binding FileMode}" Grid.Row="2" Style="{StaticResource MaterialDesignOutlinedComboBox}" ToolTip="Select file operating mode" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}" 
-                                  materialDesign:HintAssist.Hint="File mode" SelectedIndex="1" Margin="10,0,0,60" VerticalAlignment="Bottom" Height="50" Grid.Column="1">
-                        </ComboBox>
-                        <Button Command="{Binding RunProcessing}" Grid.Column="1" Grid.Row="2" Height="50" Margin="10,0,0,0" VerticalAlignment="Bottom">
-                            <DockPanel >
-                                <materialDesign:PackIcon DockPanel.Dock="Left" Kind="RunFast" Width="25" Height="25" Foreground="{DynamicResource MaterialDesignBackground}"/>
-                                <Label Content="Proceed" Foreground="{DynamicResource MaterialDesignBackground}" HorizontalAlignment="Center" Margin="10 0 0 0"/>
-                            </DockPanel>
-                        </Button>
+        <materialDesign:Card  Margin="16,10,10,16" Grid.Column="1" Grid.Row="1">
+            <materialDesign:DialogHost IsOpen="True" Identifier="SortingPageHost" >
+                <materialDesign:DialogHost.DialogContent>
+                    <Grid Margin="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Sorting images. Please wait"/>
+                            <Grid>
+                                <Label Content="30%" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <ProgressBar Grid.Row="1" Width="100" Height="100" Margin="16" Style="{DynamicResource MaterialDesignCircularProgressBar}" IsIndeterminate="True" Value="30"/>
+                            </Grid>
+                            <Button Content="Abort" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
+                        </StackPanel>
                     </Grid>
-                </Border>
+                </materialDesign:DialogHost.DialogContent>
+                <Grid DataContext="{Binding SortingViewModel, ElementName=mainWindow}" Margin="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="140"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="59"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" Grid.RowSpan="3" Grid.ColumnSpan="3">Directories with images to sort:</TextBlock>
+                    <ListBox ItemsSource="{Binding InputDirectories}" SelectedItem="{Binding SelectedDirectory}" IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.Row="1" Margin="0,0,10,28" Grid.ColumnSpan="2"/>
+                    <Button Command="{Binding SelectOutputDirectory}" Content="..." Grid.Column="1" Grid.Row="2" Height="Auto" Margin="10,10,10,0"/>
 
-            </Grid>
+                    <TextBox Grid.Column="0" Grid.Row="2" Text="{Binding OutputDirectory}" materialDesign:HintAssist.Hint="A place to store photos" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10,10,0"/>
+                    <Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="1 0 0 0">
+                        <Grid>
+                            <Button Content="Add" Command="{Binding AddDirectory}" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                            <Button Content="Remove" Command="{Binding RemoveDirectory}" Grid.Column="1" Grid.Row="1" Margin="10,37,0,0" VerticalAlignment="Top"/>
+                            <ComboBox ItemsSource="{Binding Source={StaticResource fileModesProvider}}" SelectedItem="{Binding FileMode}" Grid.Row="2" Style="{StaticResource MaterialDesignOutlinedComboBox}" ToolTip="Select file operating mode" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}" 
+                                  materialDesign:HintAssist.Hint="File mode" SelectedIndex="1" Margin="10,0,0,60" VerticalAlignment="Bottom" Height="50" Grid.Column="1">
+                            </ComboBox>
+                            <Button Command="{Binding RunProcessing}" Grid.Column="1" Grid.Row="2" Height="50" Margin="10,0,0,0" VerticalAlignment="Bottom">
+                                <DockPanel >
+                                    <materialDesign:PackIcon DockPanel.Dock="Left" Kind="RunFast" Width="25" Height="25" Foreground="{DynamicResource MaterialDesignBackground}"/>
+                                    <Label Content="Proceed" Foreground="{DynamicResource MaterialDesignBackground}" HorizontalAlignment="Center" Margin="10 0 0 0"/>
+                                </DockPanel>
+                            </Button>
+                        </Grid>
+                    </Border>
+
+                </Grid>
+            </materialDesign:DialogHost>
         </materialDesign:Card>
         <Grid x:Name="grdTitleBar" Background="Transparent" Grid.ColumnSpan="2" MouseLeftButtonDown="grdTitleBar_MouseLeftButtonDown" MouseDown="grdTitleBar_MouseDown">
             <Button x:Name="btnTitleClose"  Grid.Column="1" HorizontalAlignment="Right" Height="17" Margin="0,10,10,0" VerticalAlignment="Top" Width="17" Padding="0" Click="btnExit_Click">
