@@ -15,6 +15,7 @@
         xmlns:local="clr-namespace:PhotoKinia"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:models="clr-namespace:PhotoKinia.Models"
+        xmlns:userControls="clr-namespace:PhotoKinia.UserControls"
         mc:Ignorable="d"
         MinHeight="500" MinWidth="800"
         Height="600" Width="800" 
@@ -78,20 +79,7 @@
         <materialDesign:Card  Margin="16,10,10,16" Grid.Column="1" Grid.Row="1">
             <materialDesign:DialogHost IsOpen="True" Identifier="SortingPageHost" >
                 <materialDesign:DialogHost.DialogContent>
-                    <Grid Margin="16">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <StackPanel>
-                            <TextBlock Text="Sorting images. Please wait"/>
-                            <Grid>
-                                <Label Content="30%" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <ProgressBar Grid.Row="1" Width="100" Height="100" Margin="16" Style="{DynamicResource MaterialDesignCircularProgressBar}" IsIndeterminate="True" Value="30"/>
-                            </Grid>
-                            <Button Content="Abort" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
-                        </StackPanel>
-                    </Grid>
+                    <userControls:OperationProcessingControl/>
                 </materialDesign:DialogHost.DialogContent>
                 <Grid DataContext="{Binding SortingViewModel, ElementName=mainWindow}" Margin="16">
                     <Grid.ColumnDefinitions>
