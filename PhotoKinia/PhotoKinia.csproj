@@ -85,12 +85,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Contracts\IDialogHostWrapper.cs" />
     <Compile Include="Contracts\IDirectorySelector.cs" />
     <Compile Include="Models\FileOperationMode.cs" />
     <Compile Include="UserControls\OperationProcessingControl.xaml.cs">
       <DependentUpon>OperationProcessingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\FileOperations\UIDirectoryBrowser.cs" />
+    <Compile Include="Utils\UI\DialogHostWrapper.cs" />
     <Compile Include="ViewModels\SimpleCommand.cs" />
     <Compile Include="ViewModels\SortingViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
