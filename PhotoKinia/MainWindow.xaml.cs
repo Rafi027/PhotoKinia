@@ -3,6 +3,7 @@ using ImageSortingModule.FileListGeneration;
 using PhotoKinia.Forms;
 using PhotoKinia.Modules.ImageSortingModule;
 using PhotoKinia.Utils.FileOperations;
+using PhotoKinia.Utils.UI;
 using PhotoKinia.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,8 @@ namespace PhotoKinia
                     new DateTimeClassification(
                         new MetadataCreationDateReader()), 
                     new MD5Check()),  
-                new UIDirectoryBrowser());
+                new UIDirectoryBrowser(),
+                new ProgressControlHost());
             InitializeComponent();
         }
 

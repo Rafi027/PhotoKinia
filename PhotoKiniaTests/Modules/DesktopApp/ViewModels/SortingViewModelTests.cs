@@ -23,6 +23,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         private Mock<IImageSorter> imageSortingMock;
         private Mock<IDirectorySelector> directorySelectorMock;
         private Mock<IFileListGenerator> subDirectoriesSearchMock;
+        private Mock<IDialogHostWrapper> progressControlHostWrapperMock;
 
         [TestInitialize]
         public void Init()
@@ -32,6 +33,8 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
             subDirectoriesSearchMock = new Mock<IFileListGenerator>();
             subDirectoriesSearchMock.Setup(s => s.GetFiles(It.Is<IEnumerable<string>>(input => input.Count() > 0)))
                 .Returns(new List<string>() { Path.Combine(TestPath1, "img1.jpg"), Path.Combine(TestPath2, "img2.jpg")});
+            progressControlHostWrapperMock = new Mock<IDialogHostWrapper>();
+            progressControlHostWrapperMock.Setup(p => p.ShowAsync(It.IsAny<ViewModelBase>(), It.IsAny<string>(), null, null));
         }
 
         [TestMethod]
@@ -42,7 +45,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath2)
                 .Returns(TestPath3);
 
-            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object, progressControlHostWrapperMock.Object);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
@@ -61,7 +64,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath1)
                 .Returns(TestPath1);
 
-            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object, progressControlHostWrapperMock.Object);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
@@ -80,7 +83,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath2)
                 .Returns(TestPath3);
 
-            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object, progressControlHostWrapperMock.Object);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.AddDirectory.Execute(null);
@@ -99,7 +102,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         {
             var directorySelectorMock = new Mock<IDirectorySelector>();
 
-            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object, progressControlHostWrapperMock.Object);
             var canExecuteProcessing = ViewModel.RunProcessing.CanExecute(null);
             Assert.IsFalse(canExecuteProcessing);
         }
@@ -111,7 +114,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath1)
                 .Returns(TestOutputPath);
 
-            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object, progressControlHostWrapperMock.Object);
             ViewModel.AddDirectory.Execute(null);
             ViewModel.SelectOutputDirectory.Execute(null);
             var canExecuteProcessing = ViewModel.RunProcessing.CanExecute(null);
@@ -133,7 +136,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath1);
 
 
-            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object, progressControlHostWrapperMock.Object);
             ViewModel.OutputDirectory = TestOutputPath;
             ViewModel.AddDirectory.Execute(null);
             ViewModel.RunProcessing.Execute(null);
@@ -155,7 +158,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath1);
 
 
-            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object, progressControlHostWrapperMock.Object);
             ViewModel.OutputDirectory = TestOutputPath;
             ViewModel.FileMode = PhotoKinia.Models.FileOperationMode.Copy;
             ViewModel.AddDirectory.Execute(null);
@@ -178,7 +181,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
                 .Returns(TestPath1);
 
 
-            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object);
+            var ViewModel = new SortingViewModel(subDirectoriesSearchMock.Object, imageSortingMock.Object, directorySelectorMock.Object, progressControlHostWrapperMock.Object);
             ViewModel.OutputDirectory = TestOutputPath;
             ViewModel.FileMode = PhotoKinia.Models.FileOperationMode.Move;
             ViewModel.AddDirectory.Execute(null);

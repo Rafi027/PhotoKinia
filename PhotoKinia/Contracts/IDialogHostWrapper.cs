@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PhotoKinia.Contracts
 {
-    interface IDialogHostWrapper
+    public interface IDialogHostWrapper
     {
         Task ShowAsync(object o, string dialogID, DialogOpenedEventHandler openedEventHandler, DialogClosingEventHandler closingEventHandler);
     }

@@ -21,6 +21,7 @@ namespace PhotoKinia.ViewModels
         private readonly IFileListGenerator fileListGenerator;
         private readonly IImageSorter sorter;
         private readonly IDirectorySelector directorySelector;
+        private readonly IDialogHostWrapper dialogHostWrapper;
 
         public ObservableCollection<string> InputDirectories { get; private set; }
         public string SelectedDirectory { get; set; }
@@ -38,11 +39,12 @@ namespace PhotoKinia.ViewModels
         public ICommand RunProcessing { get; private set; }
         public ICommand SelectOutputDirectory { get; set; }
 
-        public SortingViewModel(IFileListGenerator fileListGenerator, ImageSortingModule.IImageSorter imageSorter, IDirectorySelector directorySelector)
+        public SortingViewModel(IFileListGenerator fileListGenerator, ImageSortingModule.IImageSorter imageSorter, IDirectorySelector directorySelector, IDialogHostWrapper dialogHostWrapper)
         {
             this.fileListGenerator = fileListGenerator;
             sorter = imageSorter;
             this.directorySelector = directorySelector;
+            this.dialogHostWrapper = dialogHostWrapper;
             Initialize();
         }
 
@@ -60,14 +62,16 @@ namespace PhotoKinia.ViewModels
             });
 
             RemoveDirectory = new SimpleCommand((o) =>
-            {
+            {   
                 if(InputDirectories.Contains(SelectedDirectory))
                     InputDirectories.Remove(SelectedDirectory);
             });
 
             RunProcessing = new SimpleCommand((o) =>
             {
-                sorter.Sort(fileListGenerator.GetFiles(InputDirectories), OutputDirectory, GetFileOperatingMode());
+                //sorter.Sort(fileListGenerator.GetFiles(InputDirectories), OutputDirectory, GetFileOperatingMode());
+                dialogHostWrapper.ShowAsync(null, "SortingPageHost", null, null);
+
             },
             new Predicate<object>((o) => InputDirectories.Count > 0 && !string.IsNullOrEmpty(OutputDirectory)));
 
