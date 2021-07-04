@@ -94,6 +94,7 @@
     <Compile Include="Utils\FileOperations\UIDirectoryBrowser.cs" />
     <Compile Include="Utils\UI\DialogHostWrapper.cs" />
     <Compile Include="Utils\UI\ProgressControlHost.cs" />
+    <Compile Include="ViewModels\ProgressControlViewModel.cs" />
     <Compile Include="ViewModels\SimpleCommand.cs" />
     <Compile Include="ViewModels\SortingViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

@@ -67,11 +67,10 @@ namespace PhotoKinia.ViewModels
                     InputDirectories.Remove(SelectedDirectory);
             });
 
-            RunProcessing = new SimpleCommand((o) =>
+            RunProcessing = new SimpleCommand(async (o) =>
             {
-                //sorter.Sort(fileListGenerator.GetFiles(InputDirectories), OutputDirectory, GetFileOperatingMode());
-                dialogHostWrapper.ShowAsync(null, "SortingPageHost", null, null);
-
+                var progressControlViewModel = new ProgressControlViewModel(sorter, fileListGenerator.GetFiles(InputDirectories), OutputDirectory, GetFileOperatingMode());
+                await dialogHostWrapper.ShowAsync(null, "SortingPageHost", OnDialogOpened, null);
             },
             new Predicate<object>((o) => InputDirectories.Count > 0 && !string.IsNullOrEmpty(OutputDirectory)));
 
@@ -95,6 +94,11 @@ namespace PhotoKinia.ViewModels
                     return new FileMoveOperation();
             }
             throw new ArgumentException("Cannot select file operation mode");
+        }
+
+        void OnDialogOpened(object sender, MaterialDesignThemes.Wpf.DialogOpenedEventArgs eventArgs)
+        {
+            sorter.Sort(fileListGenerator.GetFiles(InputDirectories), OutputDirectory, GetFileOperatingMode());
         }
     }
 }
