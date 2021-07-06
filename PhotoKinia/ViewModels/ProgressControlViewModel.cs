@@ -17,6 +17,29 @@ namespace PhotoKinia.ViewModels
         private readonly string outputDirectory;
         private readonly IFileOperation fileOperation;
 
+        private int minimum;
+        public int Minimum
+        {
+            get { return minimum; }
+            set { minimum = value; RaisePropertyChanged(nameof(Minimum)); }
+        }
+
+        private long maximum;
+        public long Maximum
+        {
+            get { return maximum; }
+            set { maximum = value; RaisePropertyChanged(nameof(Maximum)); }
+        }
+
+        private bool isFinished;
+
+        public bool IsFinished
+        {
+            get { return isFinished; }
+            set { isFinished = value; RaisePropertyChanged(nameof(isFinished)); }
+        }
+
+
         public ProgressControlViewModel(IImageSorter sorter, IEnumerable<string> imageFiles, string outputDirectory, IFileOperation fileOperation)
         {
             this.sorter = sorter;
@@ -28,6 +51,7 @@ namespace PhotoKinia.ViewModels
         public void OnDialogOpened(object sender, DialogOpenedEventArgs eventArgs)
         {
             sorter.Sort(imageFiles, outputDirectory, fileOperation);
+            IsFinished = true;
         }
     }
 }
