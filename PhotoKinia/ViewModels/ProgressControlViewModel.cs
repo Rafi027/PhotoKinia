@@ -4,6 +4,7 @@ using MaterialDesignThemes.Wpf;
 using PhotoKinia.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,14 +32,14 @@ namespace PhotoKinia.ViewModels
             set { maximum = value; RaisePropertyChanged(nameof(Maximum)); }
         }
 
-        private bool isFinished;
+        private string finishText;
+        private BackgroundWorker worker;
 
-        public bool IsFinished
+        public string FinishText
         {
-            get { return isFinished; }
-            set { isFinished = value; RaisePropertyChanged(nameof(isFinished)); }
+            get { return finishText; }
+            set { finishText = value; RaisePropertyChanged(nameof(FinishText)); }
         }
-
 
         public ProgressControlViewModel(IImageSorter sorter, IEnumerable<string> imageFiles, string outputDirectory, IFileOperation fileOperation)
         {
@@ -46,12 +47,25 @@ namespace PhotoKinia.ViewModels
             this.imageFiles = imageFiles;
             this.outputDirectory = outputDirectory;
             this.fileOperation = fileOperation;
+            FinishText = "Abort";
         }
 
         public void OnDialogOpened(object sender, DialogOpenedEventArgs eventArgs)
         {
+            worker = new BackgroundWorker();
+            worker.DoWork += Worker_DoWork;
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            worker.RunWorkerAsync();
+        }
+
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            FinishText = "Close";
+        }
+
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
             sorter.Sort(imageFiles, outputDirectory, fileOperation);
-            IsFinished = true;
         }
     }
 }
