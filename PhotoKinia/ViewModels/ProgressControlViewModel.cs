@@ -41,6 +41,8 @@ namespace PhotoKinia.ViewModels
             set { finishText = value; RaisePropertyChanged(nameof(FinishText)); }
         }
 
+        public event EventHandler OnCompleted;
+
         public ProgressControlViewModel(IImageSorter sorter, IEnumerable<string> imageFiles, string outputDirectory, IFileOperation fileOperation)
         {
             this.sorter = sorter;
@@ -61,6 +63,7 @@ namespace PhotoKinia.ViewModels
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             FinishText = "Close";
+            OnCompleted?.Invoke(this, new EventArgs());
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
