@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PhotoKinia.ViewModels
 {
-    class ProgressControlViewModel: ViewModelBase
+    class ProgressControlViewModel : ViewModelBase
     {
         private readonly IImageSorter sorter;
         private readonly IEnumerable<string> imageFiles;
@@ -32,6 +32,13 @@ namespace PhotoKinia.ViewModels
             set { maximum = value; RaisePropertyChanged(nameof(Maximum)); }
         }
 
+        private long progress;
+        public long Progress
+        {
+            get => progress;
+            set { progress = value; RaisePropertyChanged(nameof(Progress)); }
+        }
+
         private string finishText;
         private BackgroundWorker worker;
 
@@ -50,6 +57,9 @@ namespace PhotoKinia.ViewModels
             this.outputDirectory = outputDirectory;
             this.fileOperation = fileOperation;
             FinishText = "Abort";
+            Minimum = 0;
+            Maximum = 100;
+            Progress = 0;
         }
 
         public void OnDialogOpened(object sender, DialogOpenedEventArgs eventArgs)
@@ -57,7 +67,13 @@ namespace PhotoKinia.ViewModels
             worker = new BackgroundWorker();
             worker.DoWork += Worker_DoWork;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerAsync();
+        }
+
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            Progress = e.ProgressPercentage;
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

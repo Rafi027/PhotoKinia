@@ -16,7 +16,7 @@
             <TextBlock Text="Sorting images. Please wait"/>
             <Grid>
                 <Label Content="30%" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <ProgressBar Grid.Row="1" Width="100" Height="100" Margin="16" Style="{DynamicResource MaterialDesignCircularProgressBar}" IsIndeterminate="True" Minimum="{Binding Minimum, UpdateSourceTrigger=PropertyChanged}" Maximum="{Binding Maximum, UpdateSourceTrigger=PropertyChanged}" Value="45"/>
+                <ProgressBar Grid.Row="1" Width="100" Height="100" Margin="16" Style="{DynamicResource MaterialDesignCircularProgressBar}" IsIndeterminate="True" Minimum="{Binding Minimum, UpdateSourceTrigger=PropertyChanged}" Maximum="{Binding Maximum, UpdateSourceTrigger=PropertyChanged}" Value="{Binding Progress, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
             <Button Content="{Binding FinishText, UpdateSourceTrigger=PropertyChanged}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
         </StackPanel>
