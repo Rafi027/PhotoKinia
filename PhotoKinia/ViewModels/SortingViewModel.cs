@@ -36,7 +36,7 @@ namespace PhotoKinia.ViewModels
 
         public ICommand AddDirectory { get; private set; }
         public ICommand RemoveDirectory { get; private set; }
-        public ICommand RunProcessing { get; private set; }
+        public AsyncCommand RunProcessing { get; private set; }
         public ICommand SelectOutputDirectory { get; set; }
 
         public SortingViewModel(IFileListGenerator fileListGenerator, ImageSortingModule.IImageSorter imageSorter, IDirectorySelector directorySelector, IDialogHostWrapper dialogHostWrapper)
@@ -67,7 +67,7 @@ namespace PhotoKinia.ViewModels
                     InputDirectories.Remove(SelectedDirectory);
             });
 
-            RunProcessing = new SimpleCommand(async (o) =>
+            RunProcessing = new AsyncCommand(async (o) =>
             {
                 var progressControlViewModel = new ProgressControlViewModel(sorter, fileListGenerator.GetFiles(InputDirectories), OutputDirectory, GetFileOperatingMode());
                 await dialogHostWrapper.ShowAsync(progressControlViewModel, "SortingPageHost", progressControlViewModel.OnDialogOpened, null);
