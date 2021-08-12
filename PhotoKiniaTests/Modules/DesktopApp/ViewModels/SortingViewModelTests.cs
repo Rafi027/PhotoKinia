@@ -34,7 +34,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
             subDirectoriesSearchMock.Setup(s => s.GetFiles(It.Is<IEnumerable<string>>(input => input.Count() > 0)))
                 .Returns(new List<string>() { Path.Combine(TestPath1, "img1.jpg"), Path.Combine(TestPath2, "img2.jpg")});
             progressControlHostWrapperMock = new Mock<IDialogHostWrapper>();
-            progressControlHostWrapperMock.Setup(p => p.ShowAsync(It.IsAny<ViewModelBase>(), It.IsAny<string>(), null, null));
+            progressControlHostWrapperMock.Setup(p => p.ShowAsync(It.IsAny<ProgressControlViewModel>(), It.IsAny<string>(), null, null));
         }
 
         [TestMethod]
