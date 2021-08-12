@@ -65,6 +65,7 @@ namespace PhotoKinia.ViewModels
         public void OnDialogOpened(object sender, DialogOpenedEventArgs eventArgs)
         {
             worker = new BackgroundWorker();
+            worker.WorkerReportsProgress = true;
             worker.DoWork += Worker_DoWork;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             worker.ProgressChanged += Worker_ProgressChanged;
@@ -84,7 +85,14 @@ namespace PhotoKinia.ViewModels
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
+            sorter.SortingProgressChanged += Sorter_SortingProgressChanged;
             sorter.Sort(imageFiles, outputDirectory, fileOperation);
+        }
+
+        private void Sorter_SortingProgressChanged(object sender, SortingProgressChangedEventArgs e)
+        {
+            float progressPercentage = (float)e.CurrentPhotoNumber / (float)e.TotalNumberOfPhotos * 100.0f;
+            worker.ReportProgress((int)progressPercentage);
         }
     }
 }

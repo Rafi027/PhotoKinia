@@ -26,11 +26,14 @@ namespace PhotoKinia.Modules.ImageSortingModule
             this.imageEquality = imageEquality;
         }
 
+        public event EventHandler<SortingProgressChangedEventArgs> SortingProgressChanged;
+
         public void Sort(IEnumerable<string> imageFiles, string outputDirectory, IFileOperation fileOperation)
         {
             Logger.Trace("void Sort({outputDirectory})", outputDirectory);
             var totalNumberOfFiles = imageFiles.Count();
             var currentFileNumber = 0;
+            var totalNumberOfPhotos = imageFiles.Count();
             foreach (var image in imageFiles)
             {
                 currentFileNumber++;
@@ -58,6 +61,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
 
                         Logger.Info("Copy file {currentFileNumber}/{totalNumberOfFiles} {sourceImage} to {destinationPath}", currentFileNumber, totalNumberOfFiles, Path.GetFileName(image), classification.ClassifiedPath.RelativePath);
 
+                        SortingProgressChanged?.Invoke(this, new SortingProgressChangedEventArgs { CurrentPhotoNumber = currentFileNumber, TotalNumberOfPhotos = totalNumberOfPhotos });
                         var destinationFilePath = Path.Combine(outputDirectory, classification.ClassifiedPath.RelativePath);
                         if (!File.Exists(destinationFilePath))
                         {

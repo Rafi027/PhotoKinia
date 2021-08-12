@@ -7,6 +7,7 @@ namespace ImageSortingModule
 {
     public interface IImageSorter
     {
+        event EventHandler<SortingProgressChangedEventArgs> SortingProgressChanged;
         void Sort(IEnumerable<string> imageFiles, string outputDirectory, IFileOperation fileOperation);
     }
 }
