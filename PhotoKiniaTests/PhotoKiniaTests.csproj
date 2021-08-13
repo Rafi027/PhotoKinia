@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mocks\DialogHostSpy.cs" />
     <Compile Include="Modules\DesktopApp\ViewModels\SortingViewModelTests.cs" />
     <Compile Include="Modules\ImageSortingModule\ImageSorterTestFixture.cs" />
     <Compile Include="Modules\ImageSortingModule\MonthToStringTestFixture.cs" />
@@ -101,9 +102,7 @@
       <Name>PhotoKinia</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mocks\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />
