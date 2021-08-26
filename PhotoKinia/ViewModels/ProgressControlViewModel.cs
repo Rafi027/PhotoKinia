@@ -17,6 +17,7 @@ namespace PhotoKinia.ViewModels
         private readonly IEnumerable<string> imageFiles;
         private readonly string outputDirectory;
         private readonly IFileOperation fileOperation;
+        private BackgroundWorker worker;
 
         private int minimum;
         public int Minimum
@@ -40,13 +41,19 @@ namespace PhotoKinia.ViewModels
         }
 
         private string finishText;
-        private BackgroundWorker worker;
-
         public string FinishText
         {
             get { return finishText; }
             set { finishText = value; RaisePropertyChanged(nameof(FinishText)); }
         }
+
+        private string dialogMessage;
+        public string DialogMessage
+        {
+            get { return dialogMessage; }
+            set { dialogMessage = value; RaisePropertyChanged(nameof(DialogMessage)); }
+        }
+
 
         public event EventHandler OnCompleted;
 
@@ -64,12 +71,22 @@ namespace PhotoKinia.ViewModels
 
         public void OnDialogOpened(object sender, DialogOpenedEventArgs eventArgs)
         {
-            worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = true;
+            DialogMessage = "Sorting images. Please wait!";
+            worker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
             worker.DoWork += Worker_DoWork;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerAsync();
+        }
+
+        public void OnDialogClosed(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if(worker.IsBusy)
+                worker.CancelAsync();
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -79,7 +96,12 @@ namespace PhotoKinia.ViewModels
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            FinishText = "Close";
+            if (!e.Cancelled)
+            {
+                DialogMessage = "Sorting operation finished";
+                FinishText = "Close";
+            }
+
             OnCompleted?.Invoke(this, new EventArgs());
         }
 
@@ -87,11 +109,15 @@ namespace PhotoKinia.ViewModels
         {
             sorter.SortingProgressChanged += Sorter_SortingProgressChanged;
             sorter.Sort(imageFiles, outputDirectory, fileOperation);
+            if (worker.CancellationPending)
+                e.Cancel = true;
         }
 
         private void Sorter_SortingProgressChanged(object sender, SortingProgressChangedEventArgs e)
         {
             float progressPercentage = (float)e.CurrentPhotoNumber / (float)e.TotalNumberOfPhotos * 100.0f;
+            if (worker.CancellationPending)
+                e.CancelSorting = true;
             worker.ReportProgress((int)progressPercentage);
         }
     }

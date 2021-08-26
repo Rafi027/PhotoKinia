@@ -70,7 +70,7 @@ namespace PhotoKinia.ViewModels
             RunProcessing = new AsyncCommand(async (o) =>
             {
                 var progressControlViewModel = new ProgressControlViewModel(sorter, fileListGenerator.GetFiles(InputDirectories), OutputDirectory, GetFileOperatingMode());
-                await dialogHostWrapper.ShowAsync(progressControlViewModel, "SortingPageHost", progressControlViewModel.OnDialogOpened, null);
+                await dialogHostWrapper.ShowAsync(progressControlViewModel, "SortingPageHost", progressControlViewModel.OnDialogOpened, progressControlViewModel.OnDialogClosed);
             },
             new Predicate<object>((o) => InputDirectories.Count > 0 && !string.IsNullOrEmpty(OutputDirectory)));
 

@@ -8,5 +8,6 @@ namespace ImageSortingModule
     {
         public int TotalNumberOfPhotos { get; set; }
         public int CurrentPhotoNumber { get; set; }
+        public bool CancelSorting { get; set; }
     }
 }

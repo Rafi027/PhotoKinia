@@ -61,7 +61,19 @@ namespace PhotoKinia.Modules.ImageSortingModule
 
                         Logger.Info("Copy file {currentFileNumber}/{totalNumberOfFiles} {sourceImage} to {destinationPath}", currentFileNumber, totalNumberOfFiles, Path.GetFileName(image), classification.ClassifiedPath.RelativePath);
 
-                        SortingProgressChanged?.Invoke(this, new SortingProgressChangedEventArgs { CurrentPhotoNumber = currentFileNumber, TotalNumberOfPhotos = totalNumberOfPhotos });
+                        var progressEventArgs = new SortingProgressChangedEventArgs
+                        {
+                            CurrentPhotoNumber = currentFileNumber,
+                            TotalNumberOfPhotos = totalNumberOfPhotos,
+                            CancelSorting = false
+                        };
+                        SortingProgressChanged?.Invoke(this, progressEventArgs);
+                        if (progressEventArgs.CancelSorting)
+                        {
+                            Logger.Info("Sorting process cancelled!");
+                            return;
+                        }
+
                         var destinationFilePath = Path.Combine(outputDirectory, classification.ClassifiedPath.RelativePath);
                         if (!File.Exists(destinationFilePath))
                         {

@@ -13,7 +13,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Grid.RowSpan="2">
-            <TextBlock Text="Sorting images. Please wait"/>
+            <TextBlock Text="{Binding DialogMessage, UpdateSourceTrigger=PropertyChanged}"/>
             <Grid>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Label FontSize="30" Content="{Binding Progress, UpdateSourceTrigger=PropertyChanged}"/>
