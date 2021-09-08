@@ -1,9 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
 using PhotoKinia.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PhotoKiniaTests.Mocks
@@ -19,6 +15,8 @@ namespace PhotoKiniaTests.Mocks
             PassedObject = o;
             DialogID = dialogID;
             NumberOfCalls++;
+
+            openedEventHandler.Invoke(this, null);
             return Task.CompletedTask;
         }
     }
