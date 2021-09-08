@@ -168,7 +168,7 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
         }
 
         [TestMethod]
-        public void CheckFileMoveModeProcessingSelection()
+        public async Task CheckFileMoveModeProcessingSelection()
         {
             int calls = 0;
             imageSortingMock.Setup(
@@ -186,7 +186,8 @@ namespace PhotoKiniaTests.Modules.DesktopApp.ViewModels
             ViewModel.OutputDirectory = TestOutputPath;
             ViewModel.FileMode = PhotoKinia.Models.FileOperationMode.Move;
             ViewModel.AddDirectory.Execute(null);
-            ViewModel.RunProcessing.Execute(null);
+            await ViewModel.RunProcessing.ExecuteAsync(null);
+            
             Assert.AreEqual(1, calls);
         }
     }
