@@ -8,6 +8,6 @@ namespace PhotoKinia.Modules.ImageSortingModule
 {
     public interface IFileListGenerator
     {
-        List<string> GetFiles();
+        List<string> GetFiles(IEnumerable<string> inputDirectories);
     }
 }

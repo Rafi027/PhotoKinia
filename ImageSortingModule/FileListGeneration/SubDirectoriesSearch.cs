@@ -9,30 +9,23 @@ using System.Text;
 
 namespace ImageSortingModule.FileListGeneration
 {
-    public class SubDirectoriesTextFileSource : IFileListGenerator
+    public class SubDirectoriesSearch : IFileListGenerator
     {
-        private static Logger Logger = LogManager.GetCurrentClassLogger();
-        private readonly string sourceFilePath;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public SubDirectoriesTextFileSource(string sourceFilePath)
+        public List<string> GetFiles(IEnumerable<string> inputDirectories)
         {
-            this.sourceFilePath = sourceFilePath;
-        }
-
-        public List<string> GetFiles()
-        {
-            if (!File.Exists(sourceFilePath))
+            if(inputDirectories == null)
             {
-                Logger.Error("Cannot find file with photo directories. File: {sourceFilePath}", sourceFilePath);
+                Logger.Error("Cannot find get list of directories to search.");
                 return null;
             }
 
-            var directories = File.ReadAllLines(sourceFilePath).ToList();
             var reductor = new PathReductor();
-            directories = reductor.Reduce(directories);
+            inputDirectories = reductor.Reduce(inputDirectories);
 
             var result = new List<string>();
-            foreach (var directory in directories)
+            foreach (var directory in inputDirectories)
             {
                 if (directory.StartsWith("#"))
                     continue;
@@ -42,7 +35,6 @@ namespace ImageSortingModule.FileListGeneration
 
 
             return result;
-
         }
 
         private IEnumerable<string> GetFilesFromDirectory(string directory)
@@ -51,8 +43,8 @@ namespace ImageSortingModule.FileListGeneration
             var imageFiles = directoryInfo.GetFiles().ToArray();
             foreach (var file in imageFiles)
             {
-                if(file.Extension.ToLower().Equals(".jpg") || file.Extension.ToLower().Equals(".dng") || file.Extension.ToLower().Equals(".mp4"))
-                    yield  return file.FullName;
+                if (file.Extension.ToLower().Equals(".jpg") || file.Extension.ToLower().Equals(".dng") || file.Extension.ToLower().Equals(".mp4"))
+                    yield return file.FullName;
             }
         }
 

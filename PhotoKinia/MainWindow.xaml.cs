@@ -1,4 +1,10 @@
-﻿using PhotoKinia.Forms;
+﻿using ImageSortingModule.Classification.EqualityCheck;
+using ImageSortingModule.FileListGeneration;
+using PhotoKinia.Forms;
+using PhotoKinia.Modules.ImageSortingModule;
+using PhotoKinia.Utils.FileOperations;
+using PhotoKinia.Utils.UI;
+using PhotoKinia.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +27,18 @@ namespace PhotoKinia
     /// </summary>
     public partial class MainWindow : Window
     {
+        public SortingViewModel SortingViewModel { get; private set; }
+
         public MainWindow()
         {
+            SortingViewModel = new SortingViewModel(
+                new SubDirectoriesSearch(), 
+                new ImageSorter(
+                    new DateTimeClassification(
+                        new MetadataCreationDateReader()), 
+                    new MD5Check()),  
+                new UIDirectoryBrowser(),
+                new ProgressControlHost());
             InitializeComponent();
         }
 

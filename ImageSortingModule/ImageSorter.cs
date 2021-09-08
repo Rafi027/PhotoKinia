@@ -1,4 +1,5 @@
-﻿using ImageSortingModule.Classification.EqualityCheck;
+﻿using ImageSortingModule;
+using ImageSortingModule.Classification.EqualityCheck;
 using ImageSortingModule.Classification.RenameMethod;
 using ImageSortingModule.Files;
 using NLog;
@@ -11,30 +12,28 @@ using System.Threading.Tasks;
 
 namespace PhotoKinia.Modules.ImageSortingModule
 {
-    public class ImageSorter
+    public class ImageSorter : IImageSorter
     {
         private static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly IFileListGenerator fileProvider;
         private readonly IImageClassificationMethod imageClassification;
         private readonly IImageEqualityCheck imageEquality;
-        private readonly IFileOperation fileOperation;
 
-        public ImageSorter(IFileListGenerator fileProvider, IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality, IFileOperation fileOperation)
+        public ImageSorter(IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality)
         {
             Logger.Trace("ImageSorter(IFileListGenerator fileProvider, IImageClassificationMethod imageClassification, IImageEqualityCheck imageEquality)");
-            this.fileProvider = fileProvider;
             this.imageClassification = imageClassification;
             this.imageEquality = imageEquality;
-            this.fileOperation = fileOperation;
         }
 
-        public void Sort(string outputDirectory)
+        public event EventHandler<SortingProgressChangedEventArgs> SortingProgressChanged;
+
+        public void Sort(IEnumerable<string> imageFiles, string outputDirectory, IFileOperation fileOperation)
         {
             Logger.Trace("void Sort({outputDirectory})", outputDirectory);
-            var imageFiles = fileProvider.GetFiles();
-            var totalNumberOfFiles = imageFiles.Count;
+            var totalNumberOfFiles = imageFiles.Count();
             var currentFileNumber = 0;
+            var totalNumberOfPhotos = imageFiles.Count();
             foreach (var image in imageFiles)
             {
                 currentFileNumber++;
@@ -61,6 +60,19 @@ namespace PhotoKinia.Modules.ImageSortingModule
                             Directory.CreateDirectory(directoryPath);
 
                         Logger.Info("Copy file {currentFileNumber}/{totalNumberOfFiles} {sourceImage} to {destinationPath}", currentFileNumber, totalNumberOfFiles, Path.GetFileName(image), classification.ClassifiedPath.RelativePath);
+
+                        var progressEventArgs = new SortingProgressChangedEventArgs
+                        {
+                            CurrentPhotoNumber = currentFileNumber,
+                            TotalNumberOfPhotos = totalNumberOfPhotos,
+                            CancelSorting = false
+                        };
+                        SortingProgressChanged?.Invoke(this, progressEventArgs);
+                        if (progressEventArgs.CancelSorting)
+                        {
+                            Logger.Info("Sorting process cancelled!");
+                            return;
+                        }
 
                         var destinationFilePath = Path.Combine(outputDirectory, classification.ClassifiedPath.RelativePath);
                         if (!File.Exists(destinationFilePath))
