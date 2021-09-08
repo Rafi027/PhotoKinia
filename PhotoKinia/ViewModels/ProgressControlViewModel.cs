@@ -96,13 +96,20 @@ namespace PhotoKinia.ViewModels
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (!e.Cancelled)
+            try
             {
-                DialogMessage = "Sorting operation finished";
-                FinishText = "Close";
-            }
+                if (!e.Cancelled)
+                {
+                    DialogMessage = "Sorting operation finished";
+                    FinishText = "Close";
+                }
 
-            OnCompleted?.Invoke(this, new EventArgs());
+                OnCompleted?.Invoke(this, new EventArgs());
+            }
+            finally
+            {
+                sorter.SortingProgressChanged -= Sorter_SortingProgressChanged;
+            }
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
