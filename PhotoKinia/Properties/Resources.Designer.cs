@@ -22,7 +22,7 @@ namespace PhotoKinia.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace PhotoKinia.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PhotoKinia.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,138 @@ namespace PhotoKinia.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AddDirectoryToInputListContent {
+            get {
+                return ResourceManager.GetString("AddDirectoryToInputListContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string FileCopyMode {
+            get {
+                return ResourceManager.GetString("FileCopyMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File mode.
+        /// </summary>
+        public static string FileModeHint {
+            get {
+                return ResourceManager.GetString("FileModeHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move.
+        /// </summary>
+        public static string FileMoveMode {
+            get {
+                return ResourceManager.GetString("FileMoveMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directories with images to sort:.
+        /// </summary>
+        public static string InputPhotosListLabel {
+            get {
+                return ResourceManager.GetString("InputPhotosListLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order by date.
+        /// </summary>
+        public static string OrderByDate {
+            get {
+                return ResourceManager.GetString("OrderByDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A place to store photos.
+        /// </summary>
+        public static string OutputDirectoryPathHint {
+            get {
+                return ResourceManager.GetString("OutputDirectoryPathHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proceed.
+        /// </summary>
+        public static string ProceedButtonLabel {
+            get {
+                return ResourceManager.GetString("ProceedButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abort.
+        /// </summary>
+        public static string ProgressControlAbortButtonLabel {
+            get {
+                return ResourceManager.GetString("ProgressControlAbortButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string ProgressControlFinishButtonLabel {
+            get {
+                return ResourceManager.GetString("ProgressControlFinishButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorting operation finished.
+        /// </summary>
+        public static string ProgressControlFinishLabel {
+            get {
+                return ResourceManager.GetString("ProgressControlFinishLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorting images. Please wait!.
+        /// </summary>
+        public static string ProgressControlProcessingLabel {
+            get {
+                return ResourceManager.GetString("ProgressControlProcessingLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string RemoveDirectoryFromInputListContent {
+            get {
+                return ResourceManager.GetString("RemoveDirectoryFromInputListContent", resourceCulture);
             }
         }
     }

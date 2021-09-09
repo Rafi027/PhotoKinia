@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,45 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddDirectoryToInputListContent" xml:space="preserve">
-    <value>Add</value>
+    <value>Dodaj do listy</value>
   </data>
   <data name="Exit" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="FileCopyMode" xml:space="preserve">
-    <value>Copy</value>
+    <value>Wyjście</value>
   </data>
   <data name="FileModeHint" xml:space="preserve">
-    <value>File mode</value>
-  </data>
-  <data name="FileMoveMode" xml:space="preserve">
-    <value>Move</value>
+    <value>Typ operacji</value>
   </data>
   <data name="InputPhotosListLabel" xml:space="preserve">
-    <value>Directories with images to sort:</value>
+    <value>Katalogi ze zdjęciami do sortowania</value>
   </data>
   <data name="OrderByDate" xml:space="preserve">
-    <value>Order by date</value>
+    <value>Sortuj po datach</value>
   </data>
   <data name="OutputDirectoryPathHint" xml:space="preserve">
-    <value>A place to store photos</value>
+    <value>Ścieżka z posortowanymi zdjęciami</value>
   </data>
   <data name="ProceedButtonLabel" xml:space="preserve">
-    <value>Proceed</value>
+    <value>Uruchom</value>
   </data>
   <data name="ProgressControlAbortButtonLabel" xml:space="preserve">
-    <value>Abort</value>
+    <value>Anuluj</value>
   </data>
   <data name="ProgressControlFinishButtonLabel" xml:space="preserve">
-    <value>Close</value>
+    <value>Zamknij</value>
   </data>
   <data name="ProgressControlFinishLabel" xml:space="preserve">
-    <value>Sorting operation finished</value>
+    <value>Operacja sortowania zakończona</value>
   </data>
   <data name="ProgressControlProcessingLabel" xml:space="preserve">
-    <value>Sorting images. Please wait!</value>
+    <value>Sortuję zdjęcia. Proszę czekać!</value>
   </data>
   <data name="RemoveDirectoryFromInputListContent" xml:space="preserve">
-    <value>Remove</value>
+    <value>Usuń z listy</value>
+  </data>
+  <data name="FileCopyMode" xml:space="preserve">
+    <value>Kopiuj</value>
+  </data>
+  <data name="FileMoveMode" xml:space="preserve">
+    <value>Przenieś</value>
   </data>
 </root>
