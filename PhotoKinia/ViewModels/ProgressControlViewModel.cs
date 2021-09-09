@@ -63,7 +63,7 @@ namespace PhotoKinia.ViewModels
             this.imageFiles = imageFiles;
             this.outputDirectory = outputDirectory;
             this.fileOperation = fileOperation;
-            FinishText = "Abort";
+            FinishText = Properties.Resources.ProgressControlAbortButtonLabel;
             Minimum = 0;
             Maximum = 100;
             Progress = 0;
@@ -71,7 +71,7 @@ namespace PhotoKinia.ViewModels
 
         public void OnDialogOpened(object sender, DialogOpenedEventArgs eventArgs)
         {
-            DialogMessage = "Sorting images. Please wait!";
+            DialogMessage = Properties.Resources.ProgressControlProcessingLabel;
             worker = new BackgroundWorker
             {
                 WorkerReportsProgress = true,
@@ -100,8 +100,8 @@ namespace PhotoKinia.ViewModels
             {
                 if (!e.Cancelled)
                 {
-                    DialogMessage = "Sorting operation finished";
-                    FinishText = "Close";
+                    DialogMessage = Properties.Resources.ProgressControlFinishLabel;
+                    FinishText = Properties.Resources.ProgressControlFinishButtonLabel;
                 }
 
                 OnCompleted?.Invoke(this, new EventArgs());
