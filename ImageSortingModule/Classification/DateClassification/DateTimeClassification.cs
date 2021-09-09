@@ -47,7 +47,7 @@ namespace PhotoKinia.Modules.ImageSortingModule
             return new ClassifiedRelativePath
             {
                 Year = creationDate.Year.ToString(),
-                Month = monthToString.Convert(creationDate.Month),
+                Month = creationDate.Month.ToString(),
                 Day = creationDate.Day.ToString(),
                 FileName = imageName
             };
