@@ -59,5 +59,14 @@ namespace PhotoKinia.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order by date.
+        /// </summary>
+        internal static string OrderByDate {
+            get {
+                return ResourceManager.GetString("OrderByDate", resourceCulture);
+            }
+        }
     }
 }
