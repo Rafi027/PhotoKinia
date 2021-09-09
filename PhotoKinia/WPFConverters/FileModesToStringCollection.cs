@@ -1,4 +1,5 @@
 ﻿using PhotoKinia.Models;
+using PhotoKinia.Utils.Converters;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,17 +19,7 @@ namespace PhotoKinia.Converters
             var results = new List<string>(modes.Length);
             foreach (var mode in modes)
             {
-                switch (mode)
-                {
-                    case FileOperationMode.Copy:
-                        results.Add(Properties.Resources.FileCopyMode);
-                        break;
-                    case FileOperationMode.Move:
-                        results.Add(Properties.Resources.FileMoveMode);
-                        break;
-                    default:
-                        break;
-                }
+                results.Add(FileOperationModeConverter.EnumToTranslatedString(mode));
             }
             return results;
         }

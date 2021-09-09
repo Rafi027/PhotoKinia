@@ -98,8 +98,9 @@
     </ApplicationDefinition>
     <Compile Include="Contracts\IDialogHostWrapper.cs" />
     <Compile Include="Contracts\IDirectorySelector.cs" />
-    <Compile Include="Converters\FileModesToStringCollection.cs" />
-    <Compile Include="Converters\StringToFileModeConverter.cs" />
+    <Compile Include="Utils\Converters\FileOperationModeConverter.cs" />
+    <Compile Include="WPFConverters\FileModesToStringCollection.cs" />
+    <Compile Include="WPFConverters\StringToFileModeConverter.cs" />
     <Compile Include="Models\FileOperationMode.cs" />
     <Compile Include="UserControls\OperationProcessingControl.xaml.cs">
       <DependentUpon>OperationProcessingControl.xaml</DependentUpon>
@@ -193,9 +194,7 @@
       <Name>ImageSortingModule</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
