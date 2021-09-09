@@ -79,11 +79,29 @@ namespace PhotoKinia.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string FileCopyMode {
+            get {
+                return ResourceManager.GetString("FileCopyMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File mode.
         /// </summary>
         public static string FileModeHint {
             get {
                 return ResourceManager.GetString("FileModeHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move.
+        /// </summary>
+        public static string FileMoveMode {
+            get {
+                return ResourceManager.GetString("FileMoveMode", resourceCulture);
             }
         }
         

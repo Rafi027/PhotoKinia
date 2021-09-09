@@ -16,6 +16,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:models="clr-namespace:PhotoKinia.Models"
         xmlns:userControls="clr-namespace:PhotoKinia.UserControls"
+        xmlns:converters="clr-namespace:PhotoKinia.Converters"
         xmlns:p="clr-namespace:PhotoKinia.Properties"
         mc:Ignorable="d"
         MinHeight="500" MinWidth="800"
@@ -30,6 +31,8 @@
                 <x:Type TypeName="models:FileOperationMode"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <converters:FileModesToStringCollection x:Key="fileModeToString"/>
+        <converters:StringToFileModeConverter x:Key="stringToFileMode"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -102,7 +105,7 @@
                         <Grid>
                             <Button Content="{x:Static p:Resources.AddDirectoryToInputListContent}" Command="{Binding AddDirectory}" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalAlignment="Top"/>
                             <Button Content="{x:Static p:Resources.RemoveDirectoryFromInputListContent}" Command="{Binding RemoveDirectory}" Grid.Column="1" Grid.Row="1" Margin="10,37,0,0" VerticalAlignment="Top"/>
-                            <ComboBox ItemsSource="{Binding Source={StaticResource fileModesProvider}}" SelectedItem="{Binding FileMode}" Grid.Row="2" Style="{StaticResource MaterialDesignOutlinedComboBox}" ToolTip="Select file operating mode" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}" 
+                            <ComboBox ItemsSource="{Binding Source={StaticResource fileModesProvider}, Converter={StaticResource fileModeToString}}" SelectedItem="{Binding FileMode, Converter={StaticResource stringToFileMode}}" Grid.Row="2" Style="{StaticResource MaterialDesignOutlinedComboBox}" ToolTip="Select file operating mode" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}" 
                                   materialDesign:HintAssist.Hint="{x:Static p:Resources.FileModeHint}" SelectedIndex="1" Margin="10,0,0,60" VerticalAlignment="Bottom" Height="50" Grid.Column="1">
                             </ComboBox>
                             <Button Command="{Binding RunProcessing}" Grid.Column="1" Grid.Row="2" Height="50" Margin="10,0,0,0" VerticalAlignment="Bottom">

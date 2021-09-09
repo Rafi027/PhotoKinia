@@ -153,4 +153,10 @@
   <data name="RemoveDirectoryFromInputListContent" xml:space="preserve">
     <value>Usuń z listy</value>
   </data>
+  <data name="FileCopyMode" xml:space="preserve">
+    <value>Kopiuj</value>
+  </data>
+  <data name="FileMoveMode" xml:space="preserve">
+    <value>Przenieś</value>
+  </data>
 </root>

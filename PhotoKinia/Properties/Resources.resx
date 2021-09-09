@@ -123,8 +123,14 @@
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="FileCopyMode" xml:space="preserve">
+    <value>Copy</value>
+  </data>
   <data name="FileModeHint" xml:space="preserve">
     <value>File mode</value>
+  </data>
+  <data name="FileMoveMode" xml:space="preserve">
+    <value>Move</value>
   </data>
   <data name="InputPhotosListLabel" xml:space="preserve">
     <value>Directories with images to sort:</value>

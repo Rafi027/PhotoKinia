@@ -98,6 +98,8 @@
     </ApplicationDefinition>
     <Compile Include="Contracts\IDialogHostWrapper.cs" />
     <Compile Include="Contracts\IDirectorySelector.cs" />
+    <Compile Include="Converters\FileModesToStringCollection.cs" />
+    <Compile Include="Converters\StringToFileModeConverter.cs" />
     <Compile Include="Models\FileOperationMode.cs" />
     <Compile Include="UserControls\OperationProcessingControl.xaml.cs">
       <DependentUpon>OperationProcessingControl.xaml</DependentUpon>
